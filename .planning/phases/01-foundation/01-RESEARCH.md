@@ -703,7 +703,7 @@ module.exports = {
 
 ---
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **AUTH-04 (OAuth) — resolve before planning begins**
    - What we know: REQUIREMENTS.md says v1; PROJECT.md says deferred; UI-SPEC has a conditional placeholder
