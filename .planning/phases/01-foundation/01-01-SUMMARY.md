@@ -87,14 +87,14 @@ completed: "2026-05-24"
 
 # Phase 01 Plan 01: Walking Skeleton Summary
 
-**Expo SDK 56 app scaffolded at expo-app/ with Tamagui 2.0 + Supabase client + full v1 DB schema (8 tables, RLS, increment_book_vote RPC) awaiting Supabase project credentials**
+**Expo SDK 56 app scaffolded at expo-app/ with Tamagui 2.0 + Supabase client + full v1 DB schema (8 tables, RLS, increment_book_vote RPC); Supabase project created and env wired; schema push pending supabase CLI auth**
 
 ## Performance
 
 - **Duration:** 11 min
 - **Started:** 2026-05-24T14:02:54Z
 - **Completed:** 2026-05-24T14:14:53Z
-- **Tasks:** 3 of 5 (Tasks 4 and 5 are blocking human-action checkpoints)
+- **Tasks:** 4 of 5 (Task 5 is a blocking human-action checkpoint requiring supabase CLI auth)
 - **Files modified:** 16
 
 ## Accomplishments
@@ -112,6 +112,7 @@ Each task was committed atomically:
 1. **Task 1: Scaffold expo-app/ with Expo SDK 56 template + full stack** - `a981b9a` (feat)
 2. **Task 2: Supabase client + smoke screen + root layout** - `a11d47f` (feat)
 3. **Task 3: Full v1 Supabase schema migration** - `56dbfc7` (feat)
+4. **Task 4: Supabase project created + expo-app/.env populated** - human-action checkpoint (verified: env vars set, buchclub://** added to redirect allowlist)
 
 ## Files Created/Modified
 
@@ -181,16 +182,11 @@ Each task was committed atomically:
 
 **External services require manual configuration:**
 
-**Task 4 (BLOCKING):** Create Supabase project and populate expo-app/.env:
-1. Create project at https://supabase.com/dashboard (free tier)
-2. Copy Project URL and anon/Publishable Key to `expo-app/.env`:
-   ```
-   EXPO_PUBLIC_SUPABASE_URL=https://YOUR_PROJECT_REF.supabase.co
-   EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY=eyJ...
-   ```
-3. Add `buchclub://**` to Auth → URL Configuration → Redirect URLs
-4. Verify email confirmation is enabled (Auth → Providers → Email)
-5. Reply "env-set" to continue
+**Task 4 (COMPLETE):** Supabase project created, expo-app/.env populated with real values:
+- `EXPO_PUBLIC_SUPABASE_URL=https://mlrpdcfjumvmgjjcrvyz.supabase.co`
+- `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY` set (sb_publishable_... format)
+- `buchclub://**` added to Auth → URL Configuration → Redirect URLs
+- lib/supabase.ts already used correct variable name `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY` — no fix needed
 
 **Task 5 (BLOCKING):** Push schema migration:
 ```bash
