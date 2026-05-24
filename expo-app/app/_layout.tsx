@@ -1,3 +1,4 @@
+import '../lib/i18n';
 import { TamaguiProvider } from 'tamagui';
 import { Slot } from 'expo-router';
 import { useFonts } from 'expo-font';
