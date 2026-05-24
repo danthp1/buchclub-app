@@ -67,8 +67,8 @@
 
 ### Internationalization
 
-- [ ] **I18N-01**: All UI text is available in German and English
-- [ ] **I18N-02**: App detects device language on first launch and applies it automatically
+- [x] **I18N-01**: All UI text is available in German and English
+- [x] **I18N-02**: App detects device language on first launch and applies it automatically
 - [ ] **I18N-03**: User can manually switch language in settings (persists across sessions)
 
 ## v2 Requirements

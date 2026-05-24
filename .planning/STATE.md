@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Phase 1 UI-SPEC approved
-last_updated: "2026-05-24T14:02:13.833Z"
-last_activity: 2026-05-24 -- Phase 01 execution started
+stopped_at: "Completed 01-02-PLAN.md (i18n vertical)"
+last_updated: "2026-05-24T16:46:17.598Z"
+last_activity: 2026-05-24
 progress:
   total_phases: 5
   completed_phases: 0
   total_plans: 3
-  completed_plans: 0
-  percent: 0
+  completed_plans: 2
+  percent: 67
 ---
 
 # Project State
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-05-24)
 ## Current Position
 
 Phase: 01 (foundation) — EXECUTING
-Plan: 1 of 3
-Status: Executing Phase 01
-Last activity: 2026-05-24 -- Phase 01 execution started
+Plan: 2 of 3
+Status: Ready to execute
+Last activity: 2026-05-24
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [███████░░░] 67%
 
 ## Performance Metrics
 
@@ -65,6 +65,9 @@ Recent decisions affecting current work:
 - [Init]: Google Books calls must route through a Supabase Edge Function proxy (CORS) — implement in Phase 3, not deferred.
 - [Init]: All vote mutations via `increment_book_vote` Postgres RPC only — no direct INSERT/UPDATE from client allowed.
 - [Init]: User-provided UI designs will be available; phases 1–5 all have UI hint annotation.
+- [01-02]: i18next initialized synchronously at module load (void init()) — no async race condition; useSuspense: false is mandatory for React Native.
+- [01-02]: useDidFinishSSR() guard pattern established in smoke screen for web hydration safety; Plan 03 auth screens will copy this pattern.
+- [01-02]: compatibilityJSON: 'v4' + pluralSeparator: '_' set now so Phase 2+ plural keys (member counts, vote counts) work without re-init.
 
 ### Pending Todos
 
@@ -83,6 +86,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-05-24T12:45:37.306Z
+Last session: 2026-05-24T16:46:17.590Z
 Stopped at: Phase 1 UI-SPEC approved
-Resume file: .planning/phases/01-foundation/01-UI-SPEC.md
+Resume file: None
