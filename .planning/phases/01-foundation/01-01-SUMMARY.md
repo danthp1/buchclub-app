@@ -87,14 +87,14 @@ completed: "2026-05-24"
 
 # Phase 01 Plan 01: Walking Skeleton Summary
 
-**Expo SDK 56 app scaffolded at expo-app/ with Tamagui 2.0 + Supabase client + full v1 DB schema (8 tables, RLS, increment_book_vote RPC); Supabase project created and env wired; schema push pending supabase CLI auth**
+**Expo SDK 56 app scaffolded at expo-app/ with Tamagui 2.0 + Supabase client + full v1 DB schema (8 tables, RLS, increment_book_vote RPC); Supabase project provisioned, env wired, migration fixed (gen_random_uuid + table ordering), and schema successfully pushed — smoke screen confirms Supabase reachable**
 
 ## Performance
 
-- **Duration:** 11 min
+- **Duration:** ~180 min (includes 2 human-action checkpoints)
 - **Started:** 2026-05-24T14:02:54Z
-- **Completed:** 2026-05-24T14:14:53Z
-- **Tasks:** 4 of 5 (Task 5 is a blocking human-action checkpoint requiring supabase CLI auth)
+- **Completed:** 2026-05-24
+- **Tasks:** 5 of 5 (COMPLETE)
 - **Files modified:** 16
 
 ## Accomplishments
@@ -104,6 +104,8 @@ completed: "2026-05-24"
 - Wired Supabase client with expo-sqlite localStorage polyfill and platform-appropriate settings
 - Created smoke screen at app/index.tsx proving Tamagui token rendering and Supabase round-trip
 - Authored complete v1 schema migration covering all 5 phases (8 tables, 25+ RLS policies, increment_book_vote SECURITY DEFINER RPC)
+- Fixed migration: replaced uuid_generate_v4() with gen_random_uuid() (uuid-ossp not available on hosted Supabase); reordered to define all tables before RLS policies
+- Schema successfully pushed to live Supabase project via supabase db push; smoke screen confirms `✓ Supabase reachable. Visible clubs: 0`
 
 ## Task Commits
 
@@ -113,6 +115,7 @@ Each task was committed atomically:
 2. **Task 2: Supabase client + smoke screen + root layout** - `a11d47f` (feat)
 3. **Task 3: Full v1 Supabase schema migration** - `56dbfc7` (feat)
 4. **Task 4: Supabase project created + expo-app/.env populated** - human-action checkpoint (verified: env vars set, buchclub://** added to redirect allowlist)
+5. **Task 5: Schema pushed via supabase db push** - `daced0e` (fix — migration reorder + gen_random_uuid fix; push confirmed successful)
 
 ## Files Created/Modified
 
@@ -168,52 +171,65 @@ Each task was committed atomically:
 - **Verification:** `git add expo-app/expo-env.d.ts` succeeds
 - **Committed in:** a11d47f (Task 2 commit)
 
+**4. [Rule 1 - Bug] uuid_generate_v4() unavailable on Supabase hosted Postgres**
+- **Found during:** Task 5 (supabase db push)
+- **Issue:** Migration used `uuid_generate_v4()` which requires the uuid-ossp extension. Supabase hosted Postgres does not have uuid-ossp enabled by default. Push failed with a function-not-found error.
+- **Fix:** Replaced all occurrences of `uuid_generate_v4()` with `gen_random_uuid()` (provided by pgcrypto, always available on Supabase hosted Postgres). Removed the `create extension if not exists "uuid-ossp"` line.
+- **Files modified:** `supabase/migrations/0001_v1_full_schema.sql`
+- **Verification:** `supabase db push` completed with "Finished supabase db push."
+- **Committed in:** `daced0e`
+
+**5. [Rule 1 - Bug] RLS policies referencing other tables must come after all tables are defined**
+- **Found during:** Task 5 (supabase db push)
+- **Issue:** The migration originally interleaved RLS policy blocks immediately after each table definition. Policies on `clubs` reference `club_members` (not yet defined at that point), causing a parse error during push.
+- **Fix:** Reorganized the migration file so all 8 `CREATE TABLE` statements appear first, followed by all `ALTER TABLE ... ENABLE ROW LEVEL SECURITY` statements, followed by all `CREATE POLICY` blocks.
+- **Files modified:** `supabase/migrations/0001_v1_full_schema.sql`
+- **Verification:** Push succeeded after reordering.
+- **Committed in:** `daced0e`
+
 ---
 
-**Total deviations:** 3 auto-fixed (2 Rule 1 bugs, 1 Rule 3 blocking)
-**Impact on plan:** All auto-fixes required for TypeScript correctness. No scope creep. Tamagui 2.0 API changes not reflected in plan examples.
+**Total deviations:** 5 auto-fixed (2 Rule 1 bugs from Task 2, 1 Rule 3 blocking from Task 2, 2 Rule 1 bugs from Task 5)
+**Impact on plan:** All auto-fixes required for correctness. Tamagui 2.0 API changes not reflected in plan examples; uuid-ossp unavailability and RLS policy ordering issues resolved during schema push. No scope creep.
 
 ## Issues Encountered
 
 - Expo SDK 56 template default uses `src/app/` directory for expo-router; plan specifies `expo-app/app/` paths. Resolved by removing the `src/app/` template content — expo-router auto-detects `app/` when `src/app/` is absent (confirmed via metro-config source code)
 - `expo-env.d.ts` had to be customized to declare `tamagui.generated.css` module type since CSS imports are TypeScript errors without a declaration
+- `supabase db push` failed on first attempt due to uuid_generate_v4() (uuid-ossp not available) and cross-table RLS policy references; both fixed in commit `daced0e`, push succeeded on second attempt
 
 ## User Setup Required
 
-**External services require manual configuration:**
+**External services required manual configuration:**
 
 **Task 4 (COMPLETE):** Supabase project created, expo-app/.env populated with real values:
 - `EXPO_PUBLIC_SUPABASE_URL=https://mlrpdcfjumvmgjjcrvyz.supabase.co`
 - `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY` set (sb_publishable_... format)
 - `buchclub://**` added to Auth → URL Configuration → Redirect URLs
-- lib/supabase.ts already used correct variable name `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY` — no fix needed
+- Email confirmation verified as enabled under Auth → Providers → Email
 
-**Task 5 (BLOCKING):** Push schema migration:
-```bash
-npx supabase login
-npx supabase link --project-ref YOUR_PROJECT_REF
-npx supabase db push
-```
-Then verify smoke screen at `cd expo-app && npx expo start --web` shows `✓ Supabase reachable`.
+**Task 5 (COMPLETE):** Schema migration pushed:
+- `npx supabase login` (browser auth)
+- `npx supabase link --project-ref mlrpdcfjumvmgjjcrvyz`
+- `npx supabase db push` — output: "Finished supabase db push."
+- All 8 tables, RLS policies, functions, triggers, and realtime publication confirmed in Supabase dashboard
+- Smoke screen at `npx expo start --web` reports `✓ Supabase reachable. Visible clubs: 0`
 
 ## Next Phase Readiness
 
-**Ready:**
+**All ready:**
 - Expo app scaffolded and TypeScript-clean
 - Tamagui tokens and provider tree wired
-- Supabase client configured (needs env vars)
-- Full v1 schema migration authored
-- Deep link scheme declared
+- Supabase client configured with live env vars
+- Full v1 schema applied to live Supabase project
+- Deep link scheme declared and allowlisted in Supabase dashboard
+- Smoke screen confirms end-to-end stack works
 
-**Blocking:**
-- Task 4: User must create Supabase project and populate expo-app/.env
-- Task 5: User must run supabase db push after Task 4 completes
-
-**After Tasks 4+5:** Phase 1 Plan 02 (i18n vertical) and Plan 03 (auth vertical) can proceed.
+**After this plan:** Phase 1 Plan 02 (i18n vertical) and Plan 03 (auth vertical) can proceed immediately.
 
 ## Known Stubs
 
-None — smoke screen will show a Supabase connection error until Task 4+5 are completed (env vars not yet set). This is expected behavior documented in the checkpoint.
+None — smoke screen shows `✓ Supabase reachable. Visible clubs: 0`, confirming the full end-to-end stack is working. The "0 clubs" count is correct (RLS denies anonymous reads, and no clubs have been created yet).
 
 ---
 *Phase: 01-foundation*
