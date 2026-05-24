@@ -50,7 +50,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Admin can promote a member to admin, remove a member, and toggle the club's public visibility — all changes are reflected immediately for other members.
   4. User can set a username and optional avatar, then view and edit that profile at any time.
   5. User can be a member of multiple clubs simultaneously and switch between them without losing context.
-**Plans:** TBD
+**Plans:** 4 plans
+- [ ] 02-01-PLAN.md — Foundation & design system migration (fonts, colors, QueryClient, club store, delete-account RPC migration, tab bar, i18n namespaces)
+- [ ] 02-02-PLAN.md — Onboarding vertical (username + avatar screens, WizardSteps, AvatarPicker, create-or-join sheet)
+- [ ] 02-03-PLAN.md — Club creation/join/browse vertical (wizard, join-by-code, browse, ClubBanner, ClubCard, CodeInput)
+- [ ] 02-04-PLAN.md — Club management + profile (member actions, club settings, profile view + edit, account deletion)
 **UI hint:** yes
 
 ### Phase 3: Books & Reading List
@@ -102,7 +106,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete   | 2026-05-24 |
-| 2. Clubs & Onboarding | 0/? | Not started | - |
+| 2. Clubs & Onboarding | 0/4 | Not started | - |
 | 3. Books & Reading List | 0/? | Not started | - |
 | 4. Pool, Voting & Realtime | 0/? | Not started | - |
 | 5. Meetings, Settings & i18n Completion | 0/? | Not started | - |
@@ -115,4 +119,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 ---
 *Roadmap created: 2026-05-24*
-*Last updated: 2026-05-24 after initial roadmap creation*
+*Last updated: 2026-05-24 after Phase 2 planning complete (4 plans)*
