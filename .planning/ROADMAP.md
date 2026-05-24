@@ -50,11 +50,19 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Admin can promote a member to admin, remove a member, and toggle the club's public visibility — all changes are reflected immediately for other members.
   4. User can set a username and optional avatar, then view and edit that profile at any time.
   5. User can be a member of multiple clubs simultaneously and switch between them without losing context.
-**Plans:** 4 plans
-- [ ] 02-01-PLAN.md — Foundation & design system migration (fonts, colors, QueryClient, club store, delete-account RPC migration, tab bar, i18n namespaces)
-- [ ] 02-02-PLAN.md — Onboarding vertical (username + avatar screens, WizardSteps, AvatarPicker, create-or-join sheet)
-- [ ] 02-03-PLAN.md — Club creation/join/browse vertical (wizard, join-by-code, browse, ClubBanner, ClubCard, CodeInput)
-- [ ] 02-04-PLAN.md — Club management + profile (member actions, club settings, profile view + edit, account deletion)
+**Plans:** 4 plans in 3 waves
+
+Wave 1:
+- [ ] 02-01-PLAN.md — Foundation & design system migration: font swap (Archivo Narrow + IBM Plex Sans), color token migration to Ink/Papier/Blue palette, QueryClientProvider wiring, club.store.ts (Zustand + expo-sqlite persist), delete_account RPC migration, tab folder rename to schedule/, Linking API fix
+
+Wave 2 *(blocked on Wave 1 completion)* — 02-02 and 02-03 run in parallel:
+- [ ] 02-02-PLAN.md — Onboarding vertical: (onboarding)/ route group, username screen, avatar picker (8 preset assets), create-or-join Sheet (non-dismissable), onboarding gate in InitialLayout, i18n onboarding namespace (DE + EN)
+- [ ] 02-03-PLAN.md — Club creation/join/browse vertical: 4-step wizard, join by code (CodeInput + deep link), browse public clubs, invite code generation, ClubBanner/ClubCard/CodeInput components, i18n clubs namespace (DE + EN)
+
+Wave 3 *(blocked on Wave 2 completion)*:
+- [ ] 02-04-PLAN.md — Club management + profile: club detail (members + settings), promote/remove member, leave/dissolve, profile screen + edit, delete account RPC call, i18n profile namespace (DE + EN)
+
+Cross-cutting constraints: useDidFinishSSR() guard on all screens; both DE + EN translations required; all mutations through Supabase RLS; no direct auth.users access from client
 **UI hint:** yes
 
 ### Phase 3: Books & Reading List
