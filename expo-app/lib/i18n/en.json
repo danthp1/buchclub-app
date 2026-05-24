@@ -1,0 +1,47 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "back": "Back",
+    "loading": "Loading…",
+    "error_network": "No connection. Check your internet.",
+    "error_generic": "Something went wrong. Please try again.",
+    "signOut": "Sign out",
+    "show_password": "Show password",
+    "hide_password": "Hide password"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signIn_cta": "Sign In",
+    "signUp": "Register",
+    "signUp_cta": "Create Account",
+    "email_label": "Email",
+    "password_label": "Password",
+    "password_confirm_label": "Confirm password",
+    "password_helper": "At least 8 characters",
+    "password_too_short": "At least 8 characters required.",
+    "password_mismatch": "Passwords don't match.",
+    "forgot_password": "Forgot password?",
+    "reset_password_heading": "Reset Password",
+    "reset_password_subtext": "Enter your email address. We'll send you a reset link.",
+    "send_link_cta": "Send link",
+    "link_sent_heading": "Link sent!",
+    "link_sent_body": "Check your inbox and click the link in the email.",
+    "back_to_signin": "Back to sign in",
+    "almost_done_heading": "Almost there!",
+    "almost_done_body": "We've sent you a confirmation email. Click the link to activate your account.",
+    "no_account": "No account yet?",
+    "already_registered": "Already registered?",
+    "error_invalid_credentials": "Incorrect email or password. Please try again.",
+    "error_privacy_safe_reset": "If an account exists, we've sent a link.",
+    "update_password_heading": "Set a new password",
+    "update_password_cta": "Update password",
+    "update_password_success": "Password updated."
+  },
+  "nav": {
+    "books": "Books",
+    "clubs": "Clubs",
+    "discover": "Discover",
+    "profile": "Profile"
+  }
+}

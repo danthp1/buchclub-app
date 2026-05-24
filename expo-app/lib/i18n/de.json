@@ -1,0 +1,47 @@
+{
+  "common": {
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "back": "Zurück",
+    "loading": "Laden …",
+    "error_network": "Keine Verbindung. Prüfe deine Internetverbindung.",
+    "error_generic": "Ein Fehler ist aufgetreten. Bitte versuche es erneut.",
+    "signOut": "Abmelden",
+    "show_password": "Passwort anzeigen",
+    "hide_password": "Passwort verbergen"
+  },
+  "auth": {
+    "signIn": "Anmelden",
+    "signIn_cta": "Anmelden",
+    "signUp": "Registrieren",
+    "signUp_cta": "Konto erstellen",
+    "email_label": "E-Mail",
+    "password_label": "Passwort",
+    "password_confirm_label": "Passwort bestätigen",
+    "password_helper": "Mindestens 8 Zeichen",
+    "password_too_short": "Mindestens 8 Zeichen erforderlich.",
+    "password_mismatch": "Passwörter stimmen nicht überein.",
+    "forgot_password": "Passwort vergessen?",
+    "reset_password_heading": "Passwort zurücksetzen",
+    "reset_password_subtext": "Gib deine E-Mail-Adresse ein. Wir senden dir einen Link zum Zurücksetzen.",
+    "send_link_cta": "Link senden",
+    "link_sent_heading": "Link gesendet!",
+    "link_sent_body": "Prüfe dein Postfach und klicke den Link in der E-Mail.",
+    "back_to_signin": "Zurück zur Anmeldung",
+    "almost_done_heading": "Fast geschafft!",
+    "almost_done_body": "Wir haben dir eine Bestätigungs-E-Mail gesendet. Klicke auf den Link, um dein Konto zu aktivieren.",
+    "no_account": "Noch kein Konto?",
+    "already_registered": "Bereits registriert?",
+    "error_invalid_credentials": "E-Mail oder Passwort falsch. Bitte erneut versuchen.",
+    "error_privacy_safe_reset": "Wenn ein Konto existiert, haben wir einen Link gesendet.",
+    "update_password_heading": "Neues Passwort festlegen",
+    "update_password_cta": "Passwort aktualisieren",
+    "update_password_success": "Passwort aktualisiert."
+  },
+  "nav": {
+    "books": "Bücher",
+    "clubs": "Clubs",
+    "discover": "Entdecken",
+    "profile": "Profil"
+  }
+}
