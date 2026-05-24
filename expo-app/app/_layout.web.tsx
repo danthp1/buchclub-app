@@ -6,12 +6,19 @@ import { Slot, useRouter, useSegments } from 'expo-router';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Linking from 'expo-linking';
+import { createAnimations } from '@tamagui/animations-css';
 import config from '../tamagui.config';
 import { AuthProvider } from '../providers/AuthProvider';
 import { useAuthStore } from '../store/auth.store';
 import { supabase } from '../lib/supabase';
 
 SplashScreen.preventAutoHideAsync();
+
+const animations = createAnimations({
+  fast:   '120ms ease-in',
+  medium: '220ms ease-in',
+  slow:   '350ms ease-in',
+});
 
 function InitialLayout() {
   const session = useAuthStore((s) => s.session);
@@ -52,7 +59,7 @@ export default function RootLayout() {
   });
   if (!fontsLoaded) return null;
   return (
-    <TamaguiProvider config={config} defaultTheme="light">
+    <TamaguiProvider config={config} defaultTheme="light" animations={animations}>
       <AuthProvider>
         <InitialLayout />
       </AuthProvider>

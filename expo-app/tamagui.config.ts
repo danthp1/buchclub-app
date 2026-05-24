@@ -1,6 +1,4 @@
-import { createFont, createTamagui, isWeb } from '@tamagui/core';
-import { createAnimations as createCSSAnimations } from '@tamagui/animations-css';
-import { createAnimations as createRNAnimations } from '@tamagui/animations-react-native';
+import { createFont, createTamagui } from '@tamagui/core';
 import { createInterFont } from '@tamagui/font-inter';
 import { defaultConfig } from '@tamagui/config/v5';
 
@@ -56,39 +54,8 @@ const bodyFont = createInterFont(
   }
 );
 
-// Animation presets (UI-SPEC Motion contract)
-// fast:   damping 20, stiffness 280, 120ms — button press, input focus
-// medium: damping 18, stiffness 200, 220ms — banners, screen transitions
-// slow:   damping 15, stiffness 120, 350ms — sheets/dialogs (Phase 2+)
-const animationPresetsCSS = createCSSAnimations({
-  fast: '120ms ease-in',
-  medium: '220ms ease-in',
-  slow: '350ms ease-in',
-});
-
-const animationPresetsRN = createRNAnimations({
-  fast: {
-    type: 'spring',
-    damping: 20,
-    stiffness: 280,
-  },
-  medium: {
-    type: 'spring',
-    damping: 18,
-    stiffness: 200,
-  },
-  slow: {
-    type: 'spring',
-    damping: 15,
-    stiffness: 120,
-  },
-});
-
 const config = createTamagui({
   ...defaultConfig,
-
-  // Platform-conditional animation driver (UI-SPEC Motion contract, PITFALL 10)
-  animations: isWeb ? animationPresetsCSS : animationPresetsRN,
 
   fonts: {
     heading: headingFont,

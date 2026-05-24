@@ -5,12 +5,19 @@ import { Slot, useRouter, useSegments } from 'expo-router';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Linking from 'expo-linking';
+import { createAnimations } from '@tamagui/animations-react-native';
 import config from '../tamagui.config';
 import { AuthProvider } from '../providers/AuthProvider';
 import { useAuthStore } from '../store/auth.store';
 import { supabase } from '../lib/supabase';
 
 SplashScreen.preventAutoHideAsync();
+
+const animations = createAnimations({
+  fast:   { type: 'spring', damping: 20, stiffness: 280 },
+  medium: { type: 'spring', damping: 18, stiffness: 200 },
+  slow:   { type: 'spring', damping: 15, stiffness: 120 },
+});
 
 function InitialLayout() {
   const session = useAuthStore((s) => s.session);
@@ -55,7 +62,7 @@ export default function RootLayout() {
   if (!fontsLoaded) return null;
 
   return (
-    <TamaguiProvider config={config} defaultTheme="light">
+    <TamaguiProvider config={config} defaultTheme="light" animations={animations}>
       <AuthProvider>
         <InitialLayout />
       </AuthProvider>
