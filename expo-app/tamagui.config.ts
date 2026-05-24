@@ -1,8 +1,8 @@
 import { createFont, createTamagui, isWeb } from '@tamagui/core';
-import { defaultConfig } from '@tamagui/config/v5';
-import { animations as animationsCSS } from '@tamagui/animations-css';
-import { animations as animationsReanimated } from '@tamagui/animations-react-native';
+import { createAnimations as createCSSAnimations } from '@tamagui/animations-css';
+import { createAnimations as createRNAnimations } from '@tamagui/animations-react-native';
 import { createInterFont } from '@tamagui/font-inter';
+import { defaultConfig } from '@tamagui/config/v5';
 
 const headingFont = createInterFont({
   size: {
@@ -56,11 +56,39 @@ const bodyFont = createInterFont(
   }
 );
 
+// Animation presets (UI-SPEC Motion contract)
+// fast:   damping 20, stiffness 280, 120ms — button press, input focus
+// medium: damping 18, stiffness 200, 220ms — banners, screen transitions
+// slow:   damping 15, stiffness 120, 350ms — sheets/dialogs (Phase 2+)
+const animationPresetsCSS = createCSSAnimations({
+  fast: '120ms ease-in',
+  medium: '220ms ease-in',
+  slow: '350ms ease-in',
+});
+
+const animationPresetsRN = createRNAnimations({
+  fast: {
+    type: 'spring',
+    damping: 20,
+    stiffness: 280,
+  },
+  medium: {
+    type: 'spring',
+    damping: 18,
+    stiffness: 200,
+  },
+  slow: {
+    type: 'spring',
+    damping: 15,
+    stiffness: 120,
+  },
+});
+
 const config = createTamagui({
   ...defaultConfig,
 
-  // Platform-conditional animation driver (UI-SPEC Motion contract)
-  animations: isWeb ? animationsCSS : animationsReanimated,
+  // Platform-conditional animation driver (UI-SPEC Motion contract, PITFALL 10)
+  animations: isWeb ? animationPresetsCSS : animationPresetsRN,
 
   fonts: {
     heading: headingFont,
@@ -84,35 +112,14 @@ const config = createTamagui({
       ...defaultConfig.tokens.size,
       5: 52, // Form field height (UI-SPEC: $size.5 = 52px)
     },
-    color: {
-      ...defaultConfig.tokens.color,
-      // Light palette
-      background_light: '#FDFAF6',
-      backgroundStrong_light: '#F2EDE4',
-      accent_light: '#7C4B2A',
-      color_light: '#1A1209',
-      colorSecondary_light: '#6B5C47',
-      borderColor_light: '#D6CBBC',
-      destructive_light: '#B33A3A',
-      success_light: '#2E7D5A',
-      backgroundPress_light: '#FFFFFF',
-      // Dark palette
-      background_dark: '#1A1209',
-      backgroundStrong_dark: '#2A1F14',
-      accent_dark: '#C47A3D',
-      color_dark: '#F2EDE4',
-      colorSecondary_dark: '#9E8A74',
-      borderColor_dark: '#3D2E20',
-      destructive_dark: '#E05555',
-      success_dark: '#4AB07A',
-    },
   },
 
   // Themes — light + dark (light is Phase 1 default)
   themes: {
     ...defaultConfig.themes,
     light: {
-      ...defaultConfig.themes?.light,
+      ...(defaultConfig.themes as any)?.light,
+      // UI-SPEC Light Theme
       background: '#FDFAF6',
       backgroundStrong: '#F2EDE4',
       accent: '#7C4B2A',
@@ -124,7 +131,8 @@ const config = createTamagui({
       backgroundPress: '#FFFFFF',
     },
     dark: {
-      ...defaultConfig.themes?.dark,
+      ...(defaultConfig.themes as any)?.dark,
+      // UI-SPEC Dark Theme (declared for Phase 5 toggle)
       background: '#1A1209',
       backgroundStrong: '#2A1F14',
       accent: '#C47A3D',
@@ -142,6 +150,14 @@ const config = createTamagui({
     md: { maxWidth: 768 },
     gtSm: { minWidth: 391 },
     gtMd: { minWidth: 769 },
+  },
+
+  // Override settings to allow full React Native style props (not just shorthands)
+  settings: {
+    ...defaultConfig.settings,
+    onlyAllowShorthands: false,
+    allowedStyleValues: 'somewhat-strict',
+    styleCompat: 'react-native',
   },
 });
 
