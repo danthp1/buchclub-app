@@ -66,13 +66,13 @@ All sizes and weights declared in `tamagui.config.ts` under `tokens.font` (headi
 | Role | Size | Weight | Line Height | Tamagui usage |
 |------|------|--------|-------------|---------------|
 | Body | 16px | 400 (regular) | 1.5 | Form helper text, list descriptions, paragraph copy |
-| Label | 14px | 500 (medium) | 1.4 | Input labels, tab bar labels, secondary metadata |
+| Label | 14px | 400 (regular) | 1.4 | Input labels, tab bar labels, secondary metadata |
 | Heading | 22px | 600 (semibold) | 1.2 | Screen titles ("Registrieren", "Anmelden"), card headings |
-| Display | 28px | 700 (bold) | 1.1 | App name / logo wordmark on auth screens only |
+| Display | 28px | 600 (semibold) | 1.1 | App name / logo wordmark on auth screens only |
 
 **Rules:**
 - Maximum 4 sizes in use across Phase 1. No ad-hoc sizes outside this table.
-- Maximum 2 weights in runtime use: 400 (regular) and 600 (semibold). Weight 500 (medium) is permitted for labels only. Weight 700 (bold) is permitted for the display role only.
+- Maximum 2 weights in runtime use: 400 (regular) and 600 (semibold). No other weights are permitted anywhere in Phase 1.
 - Do not use font sizes below 14px anywhere — minimum for accessibility across all platforms.
 - German strings are 20–30% longer than English equivalents. All text containers must use dynamic width (`flex: 1` or `flexWrap: 'wrap'`). No fixed-pixel-width text boxes.
 - Letter spacing: 0 for body and label; -0.3px for heading; -0.5px for display.
@@ -149,13 +149,13 @@ Declared in `tamagui.config.ts` under `media`. Used via Tamagui responsive props
 Tamagui component: <Input> or <TextInput> via tamagui
 Height: 52px ($size.5)
 Background: $backgroundStrong
-Border: 1px solid $borderColor, borderRadius: 10px
+Border: 1px solid $borderColor, borderRadius: 8px
 Focus border: 1.5px solid $accent
 Placeholder color: $colorSecondary
 Font: 16px / 400 / $color
 Padding: horizontal $space.md, vertical $space.sm
-Label above input: 14px / 500 / $colorSecondary, marginBottom: $space.xs
-Helper / error text below: 13px / 400, marginTop: $space.xs
+Label above input: 14px / 400 / $colorSecondary, marginBottom: $space.xs
+Helper / error text below: 14px / 400, marginTop: $space.xs
   - Default: $colorSecondary
   - Error: $destructive
 Icon slot (left): 20px Feather icon, color $colorSecondary; shifts text padding-left to $space.2xl
@@ -202,7 +202,7 @@ Used for: "Passwort vergessen?" link-style action, "Zurück" navigation on passw
 ```
 Height: auto (inline)
 Background: transparent
-Label: 14px / 500 / $accent, underline on web (textDecorationLine: 'underline' on web only)
+Label: 14px / 400 / $accent, underline on web (textDecorationLine: 'underline' on web only)
 Used for: "Noch kein Konto? Registrieren" / "Already have an account? Sign in" toggle links
 Touch target: minimum 44px vertical by adding paddingVertical: $space.sm
 ```
@@ -217,7 +217,7 @@ Background: $backgroundPress (white)
 Border: 1.5px solid $borderColor
 Border radius: 12px
 Icon: 20px provider logo (PNG/SVG, left-aligned)
-Label: 16px / 500 / $color, centred
+Label: 16px / 400 / $color, centred
 Full-width: yes
 If AUTH-04 is deferred: do not render this button. Show email/password form only.
 If AUTH-04 is confirmed: render "Mit Google anmelden" / "Continue with Google" below a $space.md divider labelled "oder" / "or" (14px / 400 / $colorSecondary, centred).
@@ -239,7 +239,7 @@ Keyboard behaviour: KeyboardAvoidingView on native (behaviour: 'padding' on iOS,
 ```
 Container: 80px × 80px, borderRadius: 20px, background: $accent
 Icon: open book Feather icon, 40px, color: $backgroundPress (white)
-Wordmark: "Buchclub" — 28px / 700 / $color, below the mark, marginTop: $space.sm
+Wordmark: "Buchclub" — 28px / 600 / $color, below the mark, marginTop: $space.sm
 Tagline (auth screens only): 14px / 400 / $colorSecondary — omit on tab screens
 Layout: centred, marginBottom: $space.2xl before form
 ```
@@ -403,6 +403,7 @@ No header bar visible on auth screens.
 Stack.Screen headerShown: false for all (auth) screens.
 Transition: default slide (Expo Router default).
 Back button on password reset screen: Feather 'arrow-left', $color, 24px, touchable, paddingLeft: $space.md.
+  accessibilityLabel: t('common.back') — "Zurück" (DE) / "Back" (EN)
 ```
 
 ### Protected App Shell (`app/(app)/`)
@@ -420,12 +421,12 @@ Tabs (Phase 1 declares all 4 tabs for structure; only tabs relevant to Phase 1 d
 Active tab:
   icon color: $accent
   label color: $accent
-  label: 11px / 500
+  label: 14px / 400
 
 Inactive tab:
   icon color: $colorSecondary
   label color: $colorSecondary
-  label: 11px / 400
+  label: 14px / 400
 
 Tab bar background: $background
 Tab bar border-top: 1px solid $borderColor
@@ -442,7 +443,7 @@ maxWidth: 1024px, centred (margin: 0 auto)
 Logo mark (24px icon version, $accent) left-aligned, marginLeft: $space.lg
 Nav items: right-aligned, horizontal, gap: $space.md
 Each nav item:
-  - 14px / 500 / $colorSecondary default
+  - 14px / 400 / $colorSecondary default
   - Active: $color, with 2px underline $accent below
   - Hover: $color
   - Padding: $space.sm $space.md
@@ -481,7 +482,7 @@ While initialized = false: SplashScreen remains visible (expo-splash-screen)
 |-----------|---------------------------|-------------------|
 | `auth.*` | +35% (German is verbose) | All text elements use `flexWrap: 'wrap'` and `numberOfLines` is NOT set |
 | `common.cta.*` | +25% | Buttons use `flexShrink: 1` and allow label to wrap to 2 lines on narrow screens |
-| `nav.*` | +20% | Tab labels allow 2 lines (11px); web nav items use `white-space: nowrap` — abbreviate if over 12 chars |
+| `nav.*` | +20% | Tab labels allow 2 lines (14px); web nav items use `white-space: nowrap` — abbreviate if over 12 chars |
 
 **RTL readiness:** German and English are both LTR. RTL is NOT required for Phase 1. However:
 - Do NOT hard-code `textAlign: 'left'` — use `textAlign: 'start'` where text alignment must follow reading direction.
@@ -683,7 +684,7 @@ These rules are not negotiable for Phase 1 and apply to every component built:
 |------|---------------|
 | Minimum touch target | 44px × 44px on all tappable elements |
 | Color contrast | Text on `$background`: `#1A1209` on `#FDFAF6` = 15.3:1 (AAA). Text on `$accent`: `#FFFFFF` on `#7C4B2A` = 7.1:1 (AAA). |
-| Screen reader labels | All icon-only buttons have `accessibilityLabel` prop set. Eye-toggle: "Passwort anzeigen" / "Show password". |
+| Screen reader labels | All icon-only buttons have `accessibilityLabel` prop set. Eye-toggle: "Passwort anzeigen" / "Show password". Back arrow (password reset): t('common.back') — "Zurück" (DE) / "Back" (EN). |
 | Focus order | Form fields follow natural top-to-bottom focus order. `returnKeyType="next"` on all fields except last (which uses `returnKeyType="done"` / `"go"`). |
 | Error announcement | Error messages use `accessibilityRole="alert"` so screen readers announce them immediately on appearance. |
 | Reduce motion | All animations check `useReducedMotion()` and skip enter/exit styles when true. |
