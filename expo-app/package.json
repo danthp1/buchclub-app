@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "dependencies": {
     "@expo/ui": "~56.0.13",
+    "@expo/vector-icons": "^15.0.2",
     "@supabase/supabase-js": "^2.106.1",
     "@tamagui/animations-css": "^2.0.0",
     "@tamagui/animations-react-native": "^2.0.0",
