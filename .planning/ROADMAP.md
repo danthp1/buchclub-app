@@ -14,7 +14,7 @@ The existing Next.js app in the same repo is never modified. The Expo app lives 
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation** - Expo scaffold, Supabase auth (native + web), Tamagui provider, i18n scaffold (DE + EN), full DB schema SQL
+- [x] **Phase 1: Foundation** - Expo scaffold, Supabase auth (native + web), Tamagui provider, i18n scaffold (DE + EN), full DB schema SQL (completed 2026-05-24)
 - [ ] **Phase 2: Clubs & Onboarding** - Club create/join/browse, member management, user profiles
 - [ ] **Phase 3: Books & Reading List** - Google Books search (Edge Function proxy), personal reading list with cover images
 - [ ] **Phase 4: Pool, Voting & Realtime** - Propose books to club pool, atomic upvoting via RPC, live vote counts via Supabase Realtime
@@ -33,10 +33,10 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. User can log out from any screen and is returned to the sign-in screen.
   4. User can request a password-reset email and follow the link to set a new password.
   5. App displays in German on a German-locale device and in English on an English-locale device from the very first launch, with no manual configuration.
-**Plans:** 2/3 plans executed
+**Plans:** 3/3 plans complete
 - [x] 01-01-PLAN.md — Walking Skeleton: Expo SDK 56 scaffold at expo-app/, Tamagui + Supabase + i18n base stack, full v1 DB schema migration (8 tables + RPC + RLS) for all 5 phases, Supabase env setup, schema push (BLOCKING checkpoints for user setup)
 - [x] 01-02-PLAN.md — i18n vertical: i18next init with expo-localization device detection, complete DE + EN translation files (common, auth, nav namespaces), useDidFinishSSR guard pattern
-- [ ] 01-03-PLAN.md — Auth vertical: Zustand auth store + AuthProvider, Input/Button/Alert UI components, all 4 auth screens (sign-in, sign-up, forgot-password, update-password), protected app shell with platform-specific tabs, route guard, password-reset deep link handler, AUTH-04 OAuth deferred to v2
+- [x] 01-03-PLAN.md — Auth vertical: Zustand auth store + AuthProvider, Input/Button/Alert UI components, all 4 auth screens (sign-in, sign-up, forgot-password, update-password), protected app shell with platform-specific tabs, route guard, password-reset deep link handler, AUTH-04 OAuth deferred to v2
 **UI hint:** yes
 
 ### Phase 2: Clubs & Onboarding
@@ -101,7 +101,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 2/3 | In Progress|  |
+| 1. Foundation | 3/3 | Complete   | 2026-05-24 |
 | 2. Clubs & Onboarding | 0/? | Not started | - |
 | 3. Books & Reading List | 0/? | Not started | - |
 | 4. Pool, Voting & Realtime | 0/? | Not started | - |

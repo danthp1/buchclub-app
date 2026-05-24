@@ -7,11 +7,11 @@
 
 ### Authentication
 
-- [ ] **AUTH-01**: User can register with email and password
-- [ ] **AUTH-02**: User can log in with email and password and session persists across app restarts
-- [ ] **AUTH-03**: User can reset password via email link
-- [ ] **AUTH-04**: User can log in via OAuth (Google and at minimum one other social provider) via Supabase Auth
-- [ ] **AUTH-05**: User can log out from any screen
+- [x] **AUTH-01**: User can register with email and password
+- [x] **AUTH-02**: User can log in with email and password and session persists across app restarts
+- [x] **AUTH-03**: User can reset password via email link
+- [x] **AUTH-04**: User can log in via OAuth (Google and at minimum one other social provider) via Supabase Auth
+- [x] **AUTH-05**: User can log out from any screen
 
 ### Onboarding
 
