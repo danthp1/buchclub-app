@@ -132,6 +132,55 @@ A universal mobile and web app (iOS, Android, Web) for organizing and managing b
 Conventions not yet established. Will populate as patterns emerge during development.
 <!-- GSD:conventions-end -->
 
+## Design System
+
+**Full guidelines:** `design/design.md` — always consult before building any UI.  
+**Screen references:** `design/screen-*.png` (13 screens) — match these exactly.  
+**Figma:** [`vQP5zRZW98GqtNQGNBW3rc`](https://www.figma.com/design/vQP5zRZW98GqtNQGNBW3rc/Spielwiese?node-id=38-448&m=dev)
+
+### Critical rules (never break these)
+
+- **Background:** `#F0EDE4` (Papier) — never pure white
+- **Text:** `#0D0D0D` (Ink Black) — never `#000000`
+- **Headlines:** Archivo Narrow Bold — never in forms or body text
+- **Body/UI:** IBM Plex Sans Regular/SemiBold
+- **Primary CTA:** Ink Black fill, white text, height 52px, radius 12px
+- **Cards:** radius 16px, shadow `0 2px 12px rgba(0,0,0,.06)`
+- **Max 2 accent colors visible per screen**
+- **No sharp corners (0px) on interactive elements**
+- **Illustrations:** decorative only, max 320px wide, B&W lineart
+
+### Color tokens
+
+| Token | Hex | Use |
+|-------|-----|-----|
+| `--color-ink` | `#0D0D0D` | Headlines, text, dark fills |
+| `--color-papier` | `#F0EDE4` | App background |
+| `--color-surface` | `#FAFAF7` | Cards, modals, inputs |
+| `--color-border` | `#E0DDD6` | Borders, dividers |
+| `--color-muted` | `#6B6B63` | Body text, captions |
+| `--color-blue` | `#1A4FE0` | Primary CTAs, links |
+| `--color-orange` | `#E85D1F` | Upvotes, badges |
+| `--color-green` | `#2A7A3A` | Success, read status |
+
+### Screens (design/screen-*.png)
+
+| File | Screen |
+|------|--------|
+| `screen-splash.png` | Splash / Welcome |
+| `screen-login.png` | Login |
+| `screen-registration.png` | Registrierung |
+| `screen-home.png` | Home Feed |
+| `screen-book-list.png` | Bücherliste |
+| `screen-book-detail.png` | Buch-Detail |
+| `screen-add-book.png` | Buch vorschlagen |
+| `screen-appointments.png` | Treffen / Termine |
+| `screen-read-books.png` | Gelesene Bücher |
+| `screen-profile.png` | Profil |
+| `screen-success.png` | Success State |
+| `screen-error.png` | Error State |
+| `screen-empty-books.png` | Empty State |
+
 <!-- GSD:architecture-start source:ARCHITECTURE.md -->
 ## Architecture
 
