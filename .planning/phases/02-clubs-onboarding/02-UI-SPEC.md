@@ -100,7 +100,7 @@ All fonts declared in `tamagui.config.ts` under `tokens.font` (headingFont using
 **Rules:**
 - Archivo Narrow reserved exclusively for: display headings, screen titles, hero elements, club names as primary content. Never in forms, input labels, body text.
 - IBM Plex Sans for all interactive and body content: inputs, labels, button labels, descriptions, metadata.
-- Maximum 5 sizes in use across Phase 2 (display 32, h1 24, h2 18, body 15, body-sm/label 13/12). No ad-hoc sizes outside this table.
+- Maximum 6 sizes in use across Phase 2 (display 32, h1 24, h2 18, body 15, body-sm 13, label 12). No ad-hoc sizes outside this table.
 - Maximum 2 weights: 400 (Regular) + 600 (SemiBold) for IBM Plex Sans; 700 (Bold) for Archivo Narrow.
 - Minimum font size: 12px (label tokens only). Never below 12px anywhere.
 - German string expansion: all text containers use `flexWrap: 'wrap'`, no fixed-pixel-width text boxes.
@@ -274,7 +274,7 @@ Row 2 (metadata): XStack, gap: $space.sm
   - Separator: 1px $borderColor, height 12px, marginHorizontal: $space.xs
   - Visibility chip: Pill — "Öffentlich"/"Public" or "Privat"/"Private"
     12px / IBM Plex Sans SemiBold / $colorSecondary
-    background: $borderColor at 40% opacity, padding: 3px 8px, radius: full
+    background: $borderColor at 40% opacity, padding: 4px 8px, radius: full
 Row 3 (if in browse context): Button secondary "Beitreten" / "Join" — full width, marginTop: $space.sm
 
 Active club indicator: left border 3px $accent, visible when this club is the active club
@@ -299,8 +299,8 @@ Left: Avatar — 36px × 36px, radius: full
 Middle (flex: 1):
   - Username: 15px / IBM Plex Sans SemiBold / $color
   - Role chip (admin only): "Admin" — 12px / IBM Plex Sans SemiBold / $accent
-    background: $accent at 10% opacity, padding: 2px 8px, radius: full
-    marginTop: 2px
+    background: $accent at 10% opacity, padding: 4px 8px, radius: full
+    marginTop: 4px
 Right (admin context only): Feather 'more-vertical' 20px / $colorSecondary, 44px touch target
   — long press or tap opens action sheet: Promote to admin | Remove from club
 ```
@@ -322,7 +322,7 @@ Unselected state: no border, no background
 
 Each avatar:
   - Image: 64px × 64px, B&W lineart illustration
-  - Label below: 11px / IBM Plex Sans Regular / $colorSecondary (not shown by default, shown on focus only)
+  - Label below: 12px / IBM Plex Sans Regular / $colorSecondary (not shown by default, shown on focus only)
   - Accessibility: accessibilityLabel: t('onboarding.avatar_option', { number: N })
 
 Skip button: Button text variant — "Überspringen" / "Skip" — centered below grid
@@ -352,7 +352,7 @@ Location: components/ui/CodeInput.tsx
 Layout: XStack of 8 individual character cells
   - Each cell: 40px × 52px, background $backgroundStrong, border 1.5px $borderColor
   - radius: 8px (radius-sm)
-  - Font: 22px / IBM Plex Sans SemiBold / $color, textAlign: center
+  - Font: 18px / IBM Plex Sans SemiBold / $color, textAlign: center
   - Active cell border: 1.5px $accent
   - Filled cell background: $backgroundStrong (no fill change)
 Input: single hidden TextInput captures all 8 chars, character display split into cells
@@ -514,6 +514,7 @@ Layout: YStack, flex: 1, paddingHorizontal: $space.lg, paddingTop: $space.xl
 ```
 Route: /(app)/clubs/create
 Header: Feather 'x' close button top-right (24px, $color), cancels wizard, navigates back
+  accessibilityLabel: t('common.close')
 Background: $background
 
 Step indicator: WizardSteps (4 steps) at top of form area
@@ -652,6 +653,9 @@ Divider: 1px $borderColor with "oder" / "or" centered
   — Triggers native share sheet (expo-sharing or RN Share API)
   Note: share is for SENDING, not receiving. 
   If incoming deep link arrives: code field pre-fills automatically.
+
+Note: QR code scanning (in-person sharing) is descoped from Phase 2. The manual 8-character code
+entry and deep link are the join methods for this phase. QR scan may be added in a future phase.
 ```
 
 **Pre-filled state (from deep link):**
@@ -713,6 +717,7 @@ Layout: YStack, flex: 1
 Top bar: XStack, paddingHorizontal: $space.lg, paddingTop: $space.md, paddingBottom: $space.sm
   Heading: "Meine Clubs" / "My Clubs" — H1 24px / Archivo Narrow Bold / $color, flex: 1
   FAB trigger: Feather 'plus' 24px, $color, 44px touch target — opens action sheet:
+    accessibilityLabel: t('clubs.new_club_options')
     "Club erstellen" / "Club beitreten" / "Clubs entdecken"
 
 Club list: ScrollView, paddingHorizontal: $space.lg, gap: $space.sm
@@ -763,7 +768,7 @@ Invite sheet (Sheet):
   Heading: "Mitglieder einladen" / "Invite members"
   Invite code display: large monospaced text, $code token
     background $backgroundStrong, radius 8px, padding $space.md, textAlign: center
-    20px / IBM Plex Sans SemiBold / $color, letterSpacing: 0.1em
+    18px / IBM Plex Sans SemiBold / $color, letterSpacing: 0.1em
   Share button: Button primary "Link teilen" / "Share link" (native share sheet)
   Code copy: Button secondary "Code kopieren" / "Copy code"
 ```
@@ -904,7 +909,7 @@ Username field:
 
 [gap: $space.xl]
 
-<Button primary "Speichern" / "Save" />
+<Button primary "Profil speichern" / "Save profile" />
   disabled when no changes or validation error
 
 <Button text "Abbrechen" / "Cancel" /> → navigates back without saving
@@ -1177,7 +1182,8 @@ Phase 2 adds a new `onboarding` namespace and a `clubs` namespace to the existin
     "dissolve_confirm_heading": "Club wirklich auflösen?",
     "dissolve_confirm_body": "Alle Mitglieder verlieren den Zugang. Diese Aktion kann nicht rückgängig gemacht werden.",
     "dissolve_confirm_cta": "Auflösen",
-    "banner_switch_club": "Club wechseln"
+    "banner_switch_club": "Club wechseln",
+    "new_club_options": "Club-Optionen"
   }
 }
 ```
@@ -1261,7 +1267,7 @@ Phase 2 adds a new `onboarding` namespace and a `clubs` namespace to the existin
 | Create club (step 4) | "Club erstellen" | "Create club" |
 | Join club | "Beitreten" | "Join" |
 | Success (post-create/join) | "Zum Club" | "Go to club" |
-| Profile edit | "Speichern" | "Save" |
+| Profile edit | "Profil speichern" | "Save profile" |
 
 ### Destructive Actions
 
