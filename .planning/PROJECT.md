@@ -29,6 +29,7 @@ Members stay engaged and aligned because the next book they read together is dec
 - [ ] Multiple admins supported per club
 - [ ] Votes update in real time via Supabase Realtime subscriptions
 - [ ] Vote increments are atomic via Postgres RPC (no race conditions)
+- [ ] User can log in via OAuth (Google + at least one other social provider)
 - [ ] App UI supports German and English from launch (i18n-ready architecture)
 - [ ] App runs as native iOS/Android (Expo) and as web app in browser
 
@@ -36,7 +37,7 @@ Members stay engaged and aligned because the next book they read together is dec
 
 - In-app messaging / chat — not core to book club value, high complexity
 - Video posts or file uploads — out of scope for v1
-- OAuth / social login (Google, GitHub) — email/password sufficient for v1
+- OAuth / social login (Google + one other provider) — included in v1 via Supabase Auth
 - Native push notifications — deferred to v2
 - Payment / subscription tiers — this is a free personal app
 - Book reviews or ratings beyond voting — deferred

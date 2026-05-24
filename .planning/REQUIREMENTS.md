@@ -110,53 +110,53 @@
 
 Updated during roadmap creation.
 
-| Requirement | Phase | Status |
-|-------------|-------|--------|
-| AUTH-01 | Phase 1 | Pending |
-| AUTH-02 | Phase 1 | Pending |
-| AUTH-03 | Phase 1 | Pending |
-| AUTH-04 | Phase 1 | Pending |
-| AUTH-05 | Phase 1 | Pending |
-| ONBRD-01 | Phase 2 | Pending |
-| ONBRD-02 | Phase 2 | Pending |
-| ONBRD-03 | Phase 2 | Pending |
-| ONBRD-04 | Phase 2 | Pending |
-| PROF-01 | Phase 2 | Pending |
-| PROF-02 | Phase 2 | Pending |
-| PROF-03 | Phase 2 | Pending |
-| CLUB-01 | Phase 2 | Pending |
-| CLUB-02 | Phase 2 | Pending |
-| CLUB-03 | Phase 2 | Pending |
-| CLUB-04 | Phase 2 | Pending |
-| CLUB-05 | Phase 2 | Pending |
-| CLUB-06 | Phase 2 | Pending |
-| LIST-01 | Phase 3 | Pending |
-| LIST-02 | Phase 3 | Pending |
-| LIST-03 | Phase 3 | Pending |
-| LIST-04 | Phase 3 | Pending |
-| LIST-05 | Phase 3 | Pending |
-| LIST-06 | Phase 3 | Pending |
-| POOL-01 | Phase 4 | Pending |
-| POOL-02 | Phase 4 | Pending |
-| POOL-03 | Phase 4 | Pending |
-| VOTE-01 | Phase 4 | Pending |
-| VOTE-02 | Phase 4 | Pending |
-| VOTE-03 | Phase 4 | Pending |
-| VOTE-04 | Phase 4 | Pending |
-| MEET-01 | Phase 5 | Pending |
-| MEET-02 | Phase 5 | Pending |
-| MEET-03 | Phase 5 | Pending |
-| MEET-04 | Phase 5 | Pending |
-| MEET-05 | Phase 5 | Pending |
-| I18N-01 | Phase 1 | Pending |
-| I18N-02 | Phase 1 | Pending |
-| I18N-03 | Phase 5 | Pending |
+| Requirement | Phase | Phase Name | Status |
+|-------------|-------|------------|--------|
+| AUTH-01 | Phase 1 | Foundation | Pending |
+| AUTH-02 | Phase 1 | Foundation | Pending |
+| AUTH-03 | Phase 1 | Foundation | Pending |
+| AUTH-04 | Phase 1 | Foundation | Pending |
+| AUTH-05 | Phase 1 | Foundation | Pending |
+| I18N-01 | Phase 1 | Foundation | Pending |
+| I18N-02 | Phase 1 | Foundation | Pending |
+| ONBRD-01 | Phase 2 | Clubs & Onboarding | Pending |
+| ONBRD-02 | Phase 2 | Clubs & Onboarding | Pending |
+| ONBRD-03 | Phase 2 | Clubs & Onboarding | Pending |
+| ONBRD-04 | Phase 2 | Clubs & Onboarding | Pending |
+| PROF-01 | Phase 2 | Clubs & Onboarding | Pending |
+| PROF-02 | Phase 2 | Clubs & Onboarding | Pending |
+| PROF-03 | Phase 2 | Clubs & Onboarding | Pending |
+| CLUB-01 | Phase 2 | Clubs & Onboarding | Pending |
+| CLUB-02 | Phase 2 | Clubs & Onboarding | Pending |
+| CLUB-03 | Phase 2 | Clubs & Onboarding | Pending |
+| CLUB-04 | Phase 2 | Clubs & Onboarding | Pending |
+| CLUB-05 | Phase 2 | Clubs & Onboarding | Pending |
+| CLUB-06 | Phase 2 | Clubs & Onboarding | Pending |
+| LIST-01 | Phase 3 | Books & Reading List | Pending |
+| LIST-02 | Phase 3 | Books & Reading List | Pending |
+| LIST-03 | Phase 3 | Books & Reading List | Pending |
+| LIST-04 | Phase 3 | Books & Reading List | Pending |
+| LIST-05 | Phase 3 | Books & Reading List | Pending |
+| LIST-06 | Phase 3 | Books & Reading List | Pending |
+| POOL-01 | Phase 4 | Pool, Voting & Realtime | Pending |
+| POOL-02 | Phase 4 | Pool, Voting & Realtime | Pending |
+| POOL-03 | Phase 4 | Pool, Voting & Realtime | Pending |
+| VOTE-01 | Phase 4 | Pool, Voting & Realtime | Pending |
+| VOTE-02 | Phase 4 | Pool, Voting & Realtime | Pending |
+| VOTE-03 | Phase 4 | Pool, Voting & Realtime | Pending |
+| VOTE-04 | Phase 4 | Pool, Voting & Realtime | Pending |
+| MEET-01 | Phase 5 | Meetings, Settings & i18n Completion | Pending |
+| MEET-02 | Phase 5 | Meetings, Settings & i18n Completion | Pending |
+| MEET-03 | Phase 5 | Meetings, Settings & i18n Completion | Pending |
+| MEET-04 | Phase 5 | Meetings, Settings & i18n Completion | Pending |
+| MEET-05 | Phase 5 | Meetings, Settings & i18n Completion | Pending |
+| I18N-03 | Phase 5 | Meetings, Settings & i18n Completion | Pending |
 
 **Coverage:**
-- v1 requirements: 37 total
-- Mapped to phases: 37
+- v1 requirements: 39 total
+- Mapped to phases: 39
 - Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-05-24*
-*Last updated: 2026-05-24 after initial definition*
+*Last updated: 2026-05-24 — traceability updated after roadmap creation; corrected count from 37 to 39; added Phase Name column; flagged AUTH-04 conflict*
