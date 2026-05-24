@@ -1,0 +1,20 @@
+{
+  "expo": {
+    "name": "Buchclub",
+    "slug": "buchclub",
+    "scheme": "buchclub",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": { "supportsTablet": true, "bundleIdentifier": "com.buchclub.app" },
+    "android": {
+      "adaptiveIcon": { "foregroundImage": "./assets/images/adaptive-icon.png", "backgroundColor": "#FDFAF6" },
+      "package": "com.buchclub.app"
+    },
+    "web": { "bundler": "metro", "output": "static", "favicon": "./assets/images/favicon.png" },
+    "plugins": ["expo-router", "expo-splash-screen", "expo-font", "expo-localization", "expo-web-browser"],
+    "experiments": { "typedRoutes": true }
+  }
+}
