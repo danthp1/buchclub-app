@@ -1,7 +1,7 @@
 ---
 phase: 2
 slug: clubs-onboarding
-status: draft
+status: approved
 shadcn_initialized: false
 preset: none
 created: 2026-05-24
@@ -1357,14 +1357,14 @@ Tamagui/Expo project — no shadcn registry.
 
 ## Checker Sign-Off
 
-- [ ] Dimension 1 Copywriting: PASS
-- [ ] Dimension 2 Visuals: PASS
-- [ ] Dimension 3 Color: PASS
-- [ ] Dimension 4 Typography: PASS
-- [ ] Dimension 5 Spacing: PASS
-- [ ] Dimension 6 Registry Safety: PASS
+- [x] Dimension 1 Copywriting: FLAG (non-blocking)
+- [x] Dimension 2 Visuals: PASS
+- [x] Dimension 3 Color: FLAG (non-blocking)
+- [x] Dimension 4 Typography: FLAG (non-blocking)
+- [x] Dimension 5 Spacing: PASS
+- [x] Dimension 6 Registry Safety: PASS
 
-**Approval:** pending
+**Approval:** VERIFIED ✓ (2026-05-24)
 
 ---
 
