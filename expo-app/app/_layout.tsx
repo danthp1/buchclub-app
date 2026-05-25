@@ -1,6 +1,8 @@
 import '../lib/i18n';
+import '@tamagui/native/setup-gesture-handler';
 import { useEffect } from 'react';
 import { TamaguiProvider } from 'tamagui';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Slot, useRouter, useSegments } from 'expo-router';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
@@ -39,13 +41,16 @@ function InitialLayout() {
     const inAuthGroup       = segments[0] === '(auth)';
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const inOnboardingGroup = (segments as any)[0] === '(onboarding)';
+    // create/join are the onboarding completion screens — allow them even before onboardingCompleted
+    const inOnboardingFlow  = inOnboardingGroup ||
+      (segments[1] === 'clubs' && (segments[2] === 'create' || segments[2] === 'join'));
 
     if (!session && !inAuthGroup) {
       router.replace('/(auth)/sign-in');
     } else if (session && inAuthGroup) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       router.replace((onboardingCompleted ? '/(app)/clubs' : '/(onboarding)/username') as any);
-    } else if (session && !onboardingCompleted && !inOnboardingGroup) {
+    } else if (session && !onboardingCompleted && !inOnboardingFlow) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       router.replace('/(onboarding)/username' as any);
     } else if (session && onboardingCompleted && inOnboardingGroup) {
@@ -94,12 +99,14 @@ export default function RootLayout() {
   if (!fontsLoaded) return null;
 
   return (
-    <TamaguiProvider config={config} defaultTheme="light">
-      <QueryClientProvider client={queryClient}>
-        <AuthProvider>
-          <InitialLayout />
-        </AuthProvider>
-      </QueryClientProvider>
-    </TamaguiProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <TamaguiProvider config={config} defaultTheme="light">
+        <QueryClientProvider client={queryClient}>
+          <AuthProvider>
+            <InitialLayout />
+          </AuthProvider>
+        </QueryClientProvider>
+      </TamaguiProvider>
+    </GestureHandlerRootView>
   );
 }

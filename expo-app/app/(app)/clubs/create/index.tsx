@@ -333,7 +333,10 @@ export default function CreateClubScreen() {
                     <YStack gap="$sm" width="100%" marginTop="$xl">
                       <Button
                         variant="primary"
-                        onPress={() => router.replace(`/(app)/clubs/${createdClub.id}` as never)}
+                        onPress={() => {
+                          router.dismissAll();
+                          router.replace(`/(app)/clubs/${createdClub.id}` as never);
+                        }}
                       >
                         {isClient ? t('clubs:success_cta') : 'Go to club'}
                       </Button>

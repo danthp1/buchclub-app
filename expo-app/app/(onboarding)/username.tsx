@@ -42,11 +42,13 @@ export default function UsernameScreen() {
     debounceTimer.current = setTimeout(async () => {
       const generation = ++checkGeneration.current;
       setValidating(true);
-      const { data } = await supabase
+      const userId = useAuthStore.getState().session?.user.id;
+      let query = supabase
         .from('profiles')
         .select('id')
-        .eq('username', text)
-        .maybeSingle();
+        .eq('username', text);
+      if (userId) query = query.neq('id', userId);
+      const { data } = await query.maybeSingle();
       if (generation !== checkGeneration.current) return; // stale — discard
       setValidating(false);
       if (data) setUsernameError(t('onboarding:username_error_taken'));
@@ -136,6 +138,8 @@ export default function UsernameScreen() {
                   autoComplete="off"
                   maxLength={30}
                   error={usernameError ?? undefined}
+                  returnKeyType="done"
+                  onSubmitEditing={handleSubmit}
                 />
 
                 <Text fontSize={13} color="$colorSecondary">

@@ -75,6 +75,7 @@ export default function JoinClubScreen() {
       useClubStore.getState().setPendingInviteCode(null);
 
       queryClient.invalidateQueries({ queryKey: ['clubs', 'my', userId] });
+      router.dismissAll();
       router.replace(`/(app)/clubs/${club.id}` as never);
     } catch {
       setError(t('common:error_generic'));
