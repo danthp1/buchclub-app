@@ -20,7 +20,6 @@ export function Alert({ type, message }: AlertProps) {
       gap="$xs"
       alignItems="center"
       accessibilityRole="alert"
-      transition="medium"
       enterStyle={{ opacity: 0, y: 4 }}
     >
       <Feather

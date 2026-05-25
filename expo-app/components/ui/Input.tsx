@@ -41,7 +41,6 @@ export const Input = forwardRef<TextInput, InputProps>(function Input(
           placeholderTextColor="$colorSecondary"
           secureTextEntry={isPassword && !showPassword}
           focusStyle={{ borderColor: '$accent', borderWidth: 1.5 }}
-          transition="fast"
           {...rest}
         />
         {isPassword && (
@@ -57,7 +56,7 @@ export const Input = forwardRef<TextInput, InputProps>(function Input(
             accessibilityLabel={showPassword ? t('hide_password') : t('show_password')}
             cursor="pointer"
           >
-            <Feather name={showPassword ? 'eye-off' : 'eye'} size={20} color="#6B5C47" />
+            <Feather name={showPassword ? 'eye-off' : 'eye'} size={20} color="#6B6B63" />
           </YStack>
         )}
       </XStack>

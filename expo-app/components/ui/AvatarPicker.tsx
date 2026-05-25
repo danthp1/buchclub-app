@@ -28,6 +28,7 @@ export function AvatarPicker({ selected, onSelect }: AvatarPickerProps) {
               alignItems="center"
               justifyContent="center"
               pressStyle={{ scale: 1.06 }}
+              // @ts-expect-error Tamagui 2.x animation prop requires config registration
               animation="fast"
               onPress={() => onSelect(key)}
               accessibilityRole="radio"

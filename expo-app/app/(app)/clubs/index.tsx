@@ -46,6 +46,7 @@ export default function ClubsScreen() {
               backgroundColor="$backgroundStrong"
               borderRadius={16}
               opacity={0.5}
+              // @ts-expect-error Tamagui 2.x animation prop requires config registration
               animation="slow"
               accessibilityLabel={isClient ? t('loading', { ns: 'common' }) : 'Loading'}
             />
@@ -56,7 +57,7 @@ export default function ClubsScreen() {
   }
 
   const clubs = memberships?.map((m) => ({
-    ...(m.clubs as { id: string; name: string; is_public: boolean; created_by: string }),
+    ...(m.clubs as unknown as { id: string; name: string; is_public: boolean; created_by: string }),
     member_count: 0, // populated in Club Detail; not fetched here for performance
   })) ?? [];
 

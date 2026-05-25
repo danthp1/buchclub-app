@@ -1,5 +1,6 @@
 import { createFont, createTamagui } from '@tamagui/core';
 import { defaultConfig } from '@tamagui/config/v5';
+import { createAnimations } from '@tamagui/animations-react-native';
 
 const headingFont = createFont({
   family: 'ArchivoNarrow_700Bold',
@@ -23,6 +24,12 @@ const bodyFont = createFont({
 
 const config = createTamagui({
   ...defaultConfig,
+
+  animations: createAnimations({
+    fast:   { type: 'spring', damping: 20, stiffness: 280 },
+    medium: { type: 'spring', damping: 18, stiffness: 200 },
+    slow:   { type: 'spring', damping: 15, stiffness: 120 },
+  }),
 
   fonts: {
     heading: headingFont,

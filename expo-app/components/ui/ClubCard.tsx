@@ -30,6 +30,7 @@ export function ClubCard({ club, isActive, showJoinButton, onJoin, onPress }: Cl
       borderLeftWidth={isActive ? 3 : 0}
       borderLeftColor={isActive ? '$accent' : 'transparent'}
       pressStyle={{ opacity: 0.9 }}
+      // @ts-expect-error Tamagui 2.x animation prop requires config registration
       animation="fast"
       onPress={onPress}
       shadowColor="rgba(0,0,0,0.06)"

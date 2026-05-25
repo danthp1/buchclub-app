@@ -131,9 +131,11 @@ export default function AvatarScreen() {
         onOpenChange={setSheetOpen}
         snapPoints={[35]}
         dismissOnSnapToBottom={false}
+        // @ts-expect-error Tamagui 2.x animation prop requires config registration
         animation="slow"
       >
         <Sheet.Overlay
+          // @ts-expect-error Tamagui 2.x animation prop requires config registration
           animation="medium"
           enterStyle={{ opacity: 0 }}
           exitStyle={{ opacity: 0 }}

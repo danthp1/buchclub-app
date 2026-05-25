@@ -5,7 +5,6 @@ import { Slot, useRouter, useSegments } from 'expo-router';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Linking from 'expo-linking';
-import { createAnimations } from '@tamagui/animations-react-native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ArchivoNarrow_700Bold } from '@expo-google-fonts/archivo-narrow';
 import { IBMPlexSans_400Regular, IBMPlexSans_600SemiBold } from '@expo-google-fonts/ibm-plex-sans';
@@ -16,12 +15,6 @@ import { useClubStore } from '../store/club.store';
 import { supabase } from '../lib/supabase';
 
 SplashScreen.preventAutoHideAsync();
-
-const animations = createAnimations({
-  fast:   { type: 'spring', damping: 20, stiffness: 280 },
-  medium: { type: 'spring', damping: 18, stiffness: 200 },
-  slow:   { type: 'spring', damping: 15, stiffness: 120 },
-});
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -101,7 +94,7 @@ export default function RootLayout() {
   if (!fontsLoaded) return null;
 
   return (
-    <TamaguiProvider config={config} defaultTheme="light" animations={animations}>
+    <TamaguiProvider config={config} defaultTheme="light">
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <InitialLayout />

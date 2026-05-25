@@ -23,7 +23,7 @@ export function Button({
         borderColor="$borderColor"
         borderWidth={1.5}
         color="$color"
-        height={48}
+        height="$size.5"
         borderRadius={12}
         fontSize={16}
         fontWeight="600"
@@ -31,7 +31,6 @@ export function Button({
         pressStyle={{ backgroundColor: '$backgroundStrong' }}
         disabled={isDisabled}
         opacity={isDisabled && !loading ? 0.6 : 1}
-        transition="fast"
         {...rest}
       >
         {loading ? <Spinner color="$color" size="small" /> : children}
@@ -52,7 +51,6 @@ export function Button({
         borderWidth={0}
         disabled={isDisabled}
         opacity={isDisabled && !loading ? 0.6 : 1}
-        transition="fast"
         {...rest}
       >
         {loading ? <Spinner color="$accent" size="small" /> : children}
@@ -73,7 +71,6 @@ export function Button({
       pressStyle={{ opacity: 0.85, scale: 0.98 }}
       disabled={isDisabled}
       opacity={isDisabled && !loading ? 0.6 : 1}
-      transition="fast"
       {...rest}
     >
       {loading ? <Spinner color="$backgroundPress" size="small" /> : children}
