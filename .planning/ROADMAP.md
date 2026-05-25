@@ -53,14 +53,14 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans:** 4 plans in 3 waves
 
 Wave 1:
-- [ ] 02-01-PLAN.md — Foundation & design system migration: font swap (Archivo Narrow + IBM Plex Sans), color token migration to Ink/Papier/Blue palette, QueryClientProvider wiring, club.store.ts (Zustand + expo-sqlite persist), delete_account RPC migration, tab folder rename to schedule/, Linking API fix
+- [x] 02-01-PLAN.md — Foundation & design system migration: font swap (Archivo Narrow + IBM Plex Sans), color token migration to Ink/Papier/Blue palette, QueryClientProvider wiring, club.store.ts (Zustand + expo-sqlite persist), delete_account RPC migration, tab folder rename to schedule/, Linking API fix
 
 Wave 2 *(blocked on Wave 1 completion)* — 02-02 and 02-03 run in parallel:
-- [ ] 02-02-PLAN.md — Onboarding vertical: (onboarding)/ route group, username screen, avatar picker (8 preset assets), create-or-join Sheet (non-dismissable), onboarding gate in InitialLayout, i18n onboarding namespace (DE + EN)
-- [ ] 02-03-PLAN.md — Club creation/join/browse vertical: 4-step wizard, join by code (CodeInput + deep link), browse public clubs, invite code generation, ClubBanner/ClubCard/CodeInput components, i18n clubs namespace (DE + EN)
+- [x] 02-02-PLAN.md — Onboarding vertical: (onboarding)/ route group, username screen, avatar picker (8 preset assets), create-or-join Sheet (non-dismissable), onboarding gate in InitialLayout, i18n onboarding namespace (DE + EN)
+- [x] 02-03-PLAN.md — Club creation/join/browse vertical: 4-step wizard, join by code (CodeInput + deep link), browse public clubs, invite code generation, ClubBanner/ClubCard/CodeInput components, i18n clubs namespace (DE + EN)
 
 Wave 3 *(blocked on Wave 2 completion)*:
-- [ ] 02-04-PLAN.md — Club management + profile: club detail (members + settings), promote/remove member, leave/dissolve, profile screen + edit, delete account RPC call, i18n profile namespace (DE + EN)
+- [x] 02-04-PLAN.md — Club management + profile: club detail (members + settings), promote/remove member, leave/dissolve, profile screen + edit, delete account RPC call, i18n profile namespace (DE + EN)
 
 Cross-cutting constraints: useDidFinishSSR() guard on all screens; both DE + EN translations required; all mutations through Supabase RLS; no direct auth.users access from client
 **UI hint:** yes
