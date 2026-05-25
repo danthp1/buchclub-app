@@ -20,9 +20,7 @@ import { WizardSteps } from '../../../../components/ui/WizardSteps';
 const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
 function generateInviteCode(): string {
-  const array = new Uint8Array(8);
-  crypto.getRandomValues(array);
-  return Array.from(array).map((b) => CHARS[b % CHARS.length]).join('');
+  return Array.from({ length: 8 }, () => CHARS[Math.floor(Math.random() * CHARS.length)]).join('');
 }
 
 export default function CreateClubScreen() {

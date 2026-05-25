@@ -163,6 +163,7 @@
     "delete_account": "Delete account",
     "delete_confirm_heading": "Really delete account?",
     "delete_confirm_body": "All your data will be permanently deleted. This action cannot be undone.",
-    "delete_confirm_cta": "Delete account"
+    "delete_confirm_cta": "Delete account",
+    "save_profile": "Save profile"
   }
 }

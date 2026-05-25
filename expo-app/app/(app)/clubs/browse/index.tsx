@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDidFinishSSR } from '@tamagui/use-did-finish-ssr';
 import { YStack, XStack, Text, ScrollView } from 'tamagui';
@@ -19,17 +19,23 @@ export default function BrowseClubsScreen() {
   const userId = useAuthStore((s) => s.session?.user.id);
 
   const [search, setSearch] = useState('');
+  const [debouncedSearch, setDebouncedSearch] = useState('');
   const [joinError, setJoinError] = useState<string | null>(null);
 
+  useEffect(() => {
+    const t = setTimeout(() => setDebouncedSearch(search), 400);
+    return () => clearTimeout(t);
+  }, [search]);
+
   const { data: clubs, isLoading } = useQuery({
-    queryKey: ['clubs', 'public', search],
+    queryKey: ['clubs', 'public', debouncedSearch],
     queryFn: async () => {
       let query = supabase
         .from('clubs')
         .select('id, name, is_public, club_members(count)')
         .eq('is_public', true);
       if (search.trim()) {
-        query = query.ilike('name', `%${search.trim()}%`);
+        query = query.ilike('name', `%${debouncedSearch.trim()}%`);
       }
       const { data, error } = await query.order('created_at', { ascending: false });
       if (error) throw error;

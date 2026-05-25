@@ -163,6 +163,7 @@
     "delete_account": "Konto löschen",
     "delete_confirm_heading": "Konto wirklich löschen?",
     "delete_confirm_body": "Alle deine Daten werden dauerhaft gelöscht. Diese Aktion ist nicht rückgängig zu machen.",
-    "delete_confirm_cta": "Konto löschen"
+    "delete_confirm_cta": "Konto löschen",
+    "save_profile": "Profil speichern"
   }
 }
