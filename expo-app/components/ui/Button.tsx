@@ -63,7 +63,7 @@ export function Button({
   // variant === 'primary' (default)
   return (
     <TamaguiButton
-      backgroundColor="$accent"
+      backgroundColor="$ink"
       color="$backgroundPress"
       height="$size.5"
       borderRadius={12}

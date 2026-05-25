@@ -5,15 +5,15 @@ import { useTranslation } from 'react-i18next';
 import { useDidFinishSSR } from '@tamagui/use-did-finish-ssr';
 
 type NavItem = {
-  href: '/(app)/books' | '/(app)/clubs' | '/(app)/discover' | '/(app)/profile';
-  key: 'books' | 'clubs' | 'discover' | 'profile';
+  href: '/(app)/books' | '/(app)/schedule' | '/(app)/clubs' | '/(app)/profile';
+  key: 'books' | 'schedule' | 'community' | 'profile';
 };
 
 const ITEMS: NavItem[] = [
-  { href: '/(app)/books', key: 'books' },
-  { href: '/(app)/clubs', key: 'clubs' },
-  { href: '/(app)/discover', key: 'discover' },
-  { href: '/(app)/profile', key: 'profile' },
+  { href: '/(app)/books',    key: 'books' },
+  { href: '/(app)/schedule', key: 'schedule' },
+  { href: '/(app)/clubs',    key: 'community' },
+  { href: '/(app)/profile',  key: 'profile' },
 ];
 
 export default function AppLayoutWeb() {
@@ -35,7 +35,7 @@ export default function AppLayoutWeb() {
         alignSelf="center"
       >
         <XStack alignItems="center" gap="$sm" flex={1}>
-          <Feather name="book-open" size={24} color="#7C4B2A" />
+          <Feather name="book-open" size={24} color="#1A4FE0" />
           <Text fontSize={16} fontWeight="600" color="$color">
             Buchclub
           </Text>

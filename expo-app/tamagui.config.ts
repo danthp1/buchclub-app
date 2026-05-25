@@ -1,58 +1,25 @@
 import { createFont, createTamagui } from '@tamagui/core';
-import { createInterFont } from '@tamagui/font-inter';
 import { defaultConfig } from '@tamagui/config/v5';
 
-const headingFont = createInterFont({
-  size: {
-    6: 14,
-    7: 16,
-    8: 22,
-    9: 28,
-  },
-  transform: {
-    6: 'none',
-    7: 'none',
-  },
-  weight: {
-    6: '400',
-    7: '400',
-    8: '600',
-    9: '600',
-  },
-  letterSpacing: {
-    8: -0.3,
-    9: -0.5,
-  },
-  face: {
-    400: { normal: 'Inter' },
-    600: { normal: 'InterBold' },
-  },
+const headingFont = createFont({
+  family: 'ArchivoNarrow_700Bold',
+  size: { 1: 12, 2: 14, 3: 18, 4: 24, 5: 32 },
+  lineHeight: { 1: 16, 2: 20, 3: 24, 4: 28, 5: 36 },
+  weight: { 1: '700', 2: '700', 3: '700', 4: '700', 5: '700' },
+  letterSpacing: { 4: -0.3, 5: -0.5 },
+  face: { 700: { normal: 'ArchivoNarrow_700Bold' } },
 });
 
-const bodyFont = createInterFont(
-  {
-    size: {
-      4: 14,
-      5: 16,
-    },
-    weight: {
-      4: '400',
-      5: '400',
-    },
-    letterSpacing: {
-      4: 0,
-      5: 0,
-    },
-    face: {
-      400: { normal: 'Inter' },
-      600: { normal: 'InterBold' },
-    },
+const bodyFont = createFont({
+  family: 'IBMPlexSans_400Regular',
+  size: { 1: 12, 2: 13, 3: 15, 4: 15, 5: 18 },
+  lineHeight: { 1: 16, 2: 20, 3: 22, 4: 22, 5: 24 },
+  weight: { 1: '400', 2: '400', 3: '400', 4: '400', 6: '600' },
+  face: {
+    400: { normal: 'IBMPlexSans_400Regular' },
+    600: { normal: 'IBMPlexSans_600SemiBold' },
   },
-  {
-    sizeSize: (size) => Math.round(size * 1.1),
-    sizeLineHeight: (size) => Math.round(size * 1.5),
-  }
-);
+});
 
 const config = createTamagui({
   ...defaultConfig,
@@ -86,28 +53,31 @@ const config = createTamagui({
     ...defaultConfig.themes,
     light: {
       ...(defaultConfig.themes as any)?.light,
-      // UI-SPEC Light Theme
-      background: '#FDFAF6',
-      backgroundStrong: '#F2EDE4',
-      accent: '#7C4B2A',
-      color: '#1A1209',
-      colorSecondary: '#6B5C47',
-      borderColor: '#D6CBBC',
-      destructive: '#B33A3A',
-      success: '#2E7D5A',
+      background: '#F0EDE4',        // Papier — was '#FDFAF6'
+      backgroundStrong: '#FAFAF7',  // Surface — was '#F2EDE4'
+      accent: '#1A4FE0',            // Electric Blue — was '#7C4B2A'
+      ink: '#0D0D0D',               // NEW — primary button fill, strong fills
+      color: '#0D0D0D',             // Ink Black text — was '#1A1209'
+      colorSecondary: '#6B6B63',   // Muted — was '#6B5C47'
+      borderColor: '#E0DDD6',      // Border — was '#D6CBBC'
+      destructive: '#D32F2F',      // was '#B33A3A'
+      success: '#2A7A3A',          // was '#2E7D5A'
+      orange: '#E85D1F',            // NEW — upvotes (Phase 4)
       backgroundPress: '#FFFFFF',
     },
     dark: {
       ...(defaultConfig.themes as any)?.dark,
-      // UI-SPEC Dark Theme (declared for Phase 5 toggle)
-      background: '#1A1209',
-      backgroundStrong: '#2A1F14',
-      accent: '#C47A3D',
-      color: '#F2EDE4',
-      colorSecondary: '#9E8A74',
-      borderColor: '#3D2E20',
+      background: '#1A1A14',
+      backgroundStrong: '#252520',
+      accent: '#4D7BF3',
+      ink: '#F0EDE4',
+      color: '#F0EDE4',
+      colorSecondary: '#9B9B93',
+      borderColor: '#3A3830',
       destructive: '#E05555',
       success: '#4AB07A',
+      orange: '#E85D1F',
+      backgroundPress: '#1A1A14',
     },
   },
 

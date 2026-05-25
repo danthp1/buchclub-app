@@ -20,10 +20,24 @@ void i18n
     fallbackLng: 'en',
     supportedLngs: ['en', 'de'],
     resources: {
-      en: { common: en.common, auth: en.auth, nav: en.nav },
-      de: { common: de.common, auth: de.auth, nav: de.nav },
+      en: {
+        common: en.common,
+        auth: en.auth,
+        nav: en.nav,
+        onboarding: en.onboarding,
+        clubs: en.clubs,
+        profile: en.profile,
+      },
+      de: {
+        common: de.common,
+        auth: de.auth,
+        nav: de.nav,
+        onboarding: de.onboarding,
+        clubs: de.clubs,
+        profile: de.profile,
+      },
     },
-    ns: ['common', 'auth', 'nav'],
+    ns: ['common', 'auth', 'nav', 'onboarding', 'clubs', 'profile'],
     defaultNS: 'common',
     interpolation: {
       escapeValue: false, // React handles escaping
