@@ -54,6 +54,14 @@ export default function AppLayoutNative() {
           tabBarIcon: ({ color }) => <Feather name="user" size={24} color={color} />,
         }}
       />
+      {/* Sub-routes — hidden from tab bar */}
+      <Tabs.Screen name="clubs/[id]/index"    options={{ href: null }} />
+      <Tabs.Screen name="clubs/[id]/settings" options={{ href: null }} />
+      <Tabs.Screen name="clubs/create/index"  options={{ href: null }} />
+      <Tabs.Screen name="clubs/join/index"    options={{ href: null }} />
+      <Tabs.Screen name="clubs/browse/index"  options={{ href: null }} />
+      <Tabs.Screen name="discover/index"      options={{ href: null }} />
+      <Tabs.Screen name="profile/edit"        options={{ href: null }} />
     </Tabs>
   );
 }
