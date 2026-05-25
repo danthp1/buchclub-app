@@ -27,6 +27,7 @@ void i18n
         onboarding: en.onboarding,
         clubs: en.clubs,
         profile: en.profile,
+        books: en.books,
       },
       de: {
         common: de.common,
@@ -35,9 +36,10 @@ void i18n
         onboarding: de.onboarding,
         clubs: de.clubs,
         profile: de.profile,
+        books: de.books,
       },
     },
-    ns: ['common', 'auth', 'nav', 'onboarding', 'clubs', 'profile'],
+    ns: ['common', 'auth', 'nav', 'onboarding', 'clubs', 'profile', 'books'],
     defaultNS: 'common',
     interpolation: {
       escapeValue: false, // React handles escaping
