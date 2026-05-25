@@ -165,5 +165,32 @@
     "delete_confirm_body": "Alle deine Daten werden dauerhaft gelöscht. Diese Aktion ist nicht rückgängig zu machen.",
     "delete_confirm_cta": "Konto löschen",
     "save_profile": "Profil speichern"
+  },
+  "books": {
+    "tab_reading": "Am Lesen",
+    "tab_planned": "Geplant",
+    "tab_done": "Gelesen",
+    "add_book_fab": "Buch hinzufügen",
+    "search_placeholder": "Titel, Autor oder ISBN…",
+    "search_heading": "Buch suchen",
+    "search_no_results": "Keine Bücher gefunden für \"{{query}}\"",
+    "search_load_more": "Mehr laden",
+    "status_planned": "Geplant",
+    "status_reading": "Am Lesen",
+    "status_completed": "Gelesen",
+    "add_to_list_heading": "Zu meiner Liste hinzufügen",
+    "add_to_list_cta": "Zur Liste hinzufügen",
+    "already_in_list": "Bereits in deiner Liste",
+    "change_status_heading": "Status ändern",
+    "remove_from_list": "Aus Liste entfernen",
+    "removed_toast": "Aus Liste entfernt",
+    "cover_alt": "Cover von {{title}}",
+    "empty_list_heading": "Deine Liste ist leer.",
+    "empty_list_subtext": "Suche Bücher und füge sie zu deiner Leseliste hinzu.",
+    "empty_search_cta": "Bücher suchen",
+    "detail_published": "Erschienen {{year}}",
+    "detail_read_more": "Mehr lesen",
+    "detail_read_less": "Weniger anzeigen",
+    "error_search_failed": "Suche fehlgeschlagen. Bitte erneut versuchen."
   }
 }
