@@ -41,16 +41,15 @@ function InitialLayout() {
     const inAuthGroup       = segments[0] === '(auth)';
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const inOnboardingGroup = (segments as any)[0] === '(onboarding)';
-    // create/join are the onboarding completion screens — allow them even before onboardingCompleted
-    const inOnboardingFlow  = inOnboardingGroup ||
-      (segments[1] === 'clubs' && (segments[2] === 'create' || segments[2] === 'join'));
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const inAppGroup        = (segments as any)[0] === '(app)';
 
     if (!session && !inAuthGroup) {
       router.replace('/(auth)/sign-in');
     } else if (session && inAuthGroup) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       router.replace((onboardingCompleted ? '/(app)/clubs' : '/(onboarding)/username') as any);
-    } else if (session && !onboardingCompleted && !inOnboardingFlow) {
+    } else if (session && !onboardingCompleted && !inOnboardingGroup && !inAppGroup) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       router.replace('/(onboarding)/username' as any);
     } else if (session && onboardingCompleted && inOnboardingGroup) {
