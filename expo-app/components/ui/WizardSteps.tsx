@@ -1,6 +1,9 @@
 import { XStack, YStack } from 'tamagui';
 
-type WizardStepsProps = { total: number; current: number };
+type WizardStepsProps = {
+  total: number;
+  current: number;
+};
 
 export function WizardSteps({ total, current }: WizardStepsProps) {
   return (
@@ -12,8 +15,8 @@ export function WizardSteps({ total, current }: WizardStepsProps) {
       accessibilityValue={{ now: current, min: 1, max: total }}
     >
       {Array.from({ length: total }, (_, i) => {
-        const step        = i + 1;
-        const isActive    = step === current;
+        const step = i + 1;
+        const isActive = step === current;
         const isCompleted = step < current;
         return (
           <YStack
