@@ -15,6 +15,8 @@
     "@tamagui/core": "^2.0.0",
     "@tamagui/font-inter": "^2.0.0",
     "@tamagui/metro-plugin": "^2.0.0",
+    "@tamagui/native": "^2.0.0",
+    "@tamagui/portal": "^2.0.0",
     "@tamagui/use-did-finish-ssr": "^2.0.0",
     "@tanstack/react-query": "^5.100.14",
     "expo": "~56.0.4",

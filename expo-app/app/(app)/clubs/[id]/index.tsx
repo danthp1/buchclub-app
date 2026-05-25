@@ -182,7 +182,7 @@ export default function ClubDetailScreen() {
           ))}
 
         {members?.map((member, index) => {
-          const profile = member.profiles as { username: string; avatar_url: string | null } | null;
+          const profile = member.profiles as unknown as { username: string; avatar_url: string | null } | null;
           const username = profile?.username ?? 'Unknown';
           return (
             <MemberRow
@@ -251,6 +251,7 @@ export default function ClubDetailScreen() {
         // @ts-expect-error Tamagui 2.x animation prop requires config registration
         animation="slow"
       >
+        {/* @ts-expect-error Tamagui 2.x Sheet.Overlay animation requires config */}
         <Sheet.Overlay animation="medium" enterStyle={{ opacity: 0 }} exitStyle={{ opacity: 0 }} />
         <Sheet.Handle />
         <Sheet.Frame
@@ -285,7 +286,6 @@ export default function ClubDetailScreen() {
         <Dialog.Portal>
           <Dialog.Overlay
             key="remove-overlay"
-            animation="medium"
             enterStyle={{ opacity: 0 }}
             exitStyle={{ opacity: 0 }}
             backgroundColor="rgba(0,0,0,0.5)"
@@ -352,7 +352,6 @@ export default function ClubDetailScreen() {
         <Dialog.Portal>
           <Dialog.Overlay
             key="leave-overlay"
-            animation="medium"
             enterStyle={{ opacity: 0 }}
             exitStyle={{ opacity: 0 }}
             backgroundColor="rgba(0,0,0,0.5)"

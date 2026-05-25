@@ -41,7 +41,7 @@ export default function UpdatePassword() {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#FDFAF6' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#F0EDE4' }}>
       <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
           <YStack
@@ -51,7 +51,7 @@ export default function UpdatePassword() {
             gap="$xl"
             $gtSm={{ maxWidth: 420, alignSelf: 'center', width: '100%' }}
           >
-            <Text fontSize={22} fontWeight="600" color="$color">
+            <Text fontFamily="$heading" fontSize={22} color="$color">
               {isClient ? t('auth:update_password_heading') : 'Set a new password'}
             </Text>
             {error && <Alert type="error" message={error} />}

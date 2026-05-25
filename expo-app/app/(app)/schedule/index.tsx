@@ -1,4 +1,4 @@
-import { YStack, Text } from 'tamagui';
+import { YStack, Text, Image } from 'tamagui';
 import { useTranslation } from 'react-i18next';
 import { useDidFinishSSR } from '@tamagui/use-did-finish-ssr';
 
@@ -12,7 +12,14 @@ export default function Schedule() {
       alignItems="center"
       justifyContent="center"
       padding="$lg"
+      gap="$lg"
     >
+      <Image
+        source={require('../../../assets/illustrations/error-man.png')}
+        width={220}
+        height={220}
+        resizeMode="contain"
+      />
       <Text fontFamily="$heading" fontSize={24} color="$color">
         {isClient ? t('schedule') : 'Schedule'}
       </Text>

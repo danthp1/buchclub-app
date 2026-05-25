@@ -43,7 +43,7 @@ export function ClubBanner() {
       >
         {club.name}
       </Text>
-      <Feather name="chevron-down" size={16} color="#FFFFFF" />
+      <Feather name="chevron-down" size={16} color="#F0EDE4" />
     </XStack>
   );
 }

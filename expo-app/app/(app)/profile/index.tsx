@@ -87,6 +87,16 @@ export default function ProfileScreen() {
           </YStack>
         )}
 
+        {/* Decorative illustration — 35% opacity accent per design spec */}
+        <YStack position="absolute" right={0} top={60} opacity={0.35} pointerEvents="none">
+          <Image
+            source={require('../../../assets/illustrations/success-man.png')}
+            width={160}
+            height={160}
+            resizeMode="contain"
+          />
+        </YStack>
+
         {/* Header section */}
         <XStack paddingHorizontal="$lg" paddingTop="$lg" paddingBottom="$md" gap="$md" alignItems="center">
           <Image source={avatarSource} width={64} height={64} borderRadius={32} />
@@ -200,7 +210,7 @@ export default function ProfileScreen() {
                 <Text fontSize={15} color="$destructive">
                   {isClient ? t('profile:sign_out') : 'Sign out'}
                 </Text>
-                <Feather name="log-out" size={18} color="#B33A3A" />
+                <Feather name="log-out" size={18} color="#D32F2F" />
               </XStack>
             </TouchableOpacity>
 

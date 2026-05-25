@@ -42,7 +42,7 @@ export default function ForgotPassword() {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#FDFAF6' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#F0EDE4' }}>
       <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
           <YStack
@@ -52,7 +52,7 @@ export default function ForgotPassword() {
             gap="$xl"
             $gtSm={{ maxWidth: 420, alignSelf: 'center', width: '100%' }}
           >
-            <Text fontSize={22} fontWeight="600" color="$color">
+            <Text fontFamily="$heading" fontSize={22} color="$color">
               {isClient ? t('auth:reset_password_heading') : 'Reset Password'}
             </Text>
             {linkSent ? (
@@ -61,7 +61,7 @@ export default function ForgotPassword() {
                   type="success"
                   message={isClient ? t('auth:link_sent_body') : 'Check your inbox.'}
                 />
-                <Text fontSize={22} fontWeight="600" color="$color">
+                <Text fontFamily="$heading" fontSize={22} color="$color">
                   {isClient ? t('auth:link_sent_heading') : 'Link sent!'}
                 </Text>
                 <Button variant="secondary" onPress={() => router.replace('/(auth)/sign-in')}>

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDidFinishSSR } from '@tamagui/use-did-finish-ssr';
-import { YStack, XStack, Text, Form, ScrollView } from 'tamagui';
+import { YStack, XStack, Text, Form, ScrollView, Image } from 'tamagui';
 import { Feather } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { KeyboardAvoidingView, Platform } from 'react-native';
@@ -69,7 +69,7 @@ export default function SignUp() {
 
   if (success) {
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: '#FDFAF6' }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#F0EDE4' }}>
         <YStack
           flex={1}
           paddingHorizontal="$lg"
@@ -78,8 +78,14 @@ export default function SignUp() {
           alignItems="center"
           $gtSm={{ maxWidth: 420, alignSelf: 'center', width: '100%' }}
         >
-          <Feather name="check-circle" size={32} color="#2E7D5A" />
-          <Text fontSize={22} fontWeight="600" color="$color" textAlign="center">
+          <Image
+            source={require('../../assets/illustrations/success-man.png')}
+            width={200}
+            height={200}
+            resizeMode="contain"
+          />
+          <Feather name="check-circle" size={32} color="#2A7A3A" />
+          <Text fontFamily="$heading" fontSize={22} color="$color" textAlign="center">
             {isClient ? t('auth:almost_done_heading') : 'Almost there!'}
           </Text>
           <Text fontSize={16} color="$colorSecondary" textAlign="center">
@@ -94,7 +100,7 @@ export default function SignUp() {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#FDFAF6' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#F0EDE4' }}>
       <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
           <YStack
@@ -104,7 +110,7 @@ export default function SignUp() {
             gap="$xl"
             $gtSm={{ maxWidth: 420, alignSelf: 'center', width: '100%' }}
           >
-            <Text fontSize={22} fontWeight="600" color="$color">
+            <Text fontFamily="$heading" fontSize={22} color="$color">
               {isClient ? t('auth:signUp') : 'Register'}
             </Text>
             {error && <Alert type="error" message={error} />}

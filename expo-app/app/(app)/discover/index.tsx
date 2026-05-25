@@ -1,4 +1,4 @@
-import { YStack, Text } from 'tamagui';
+import { YStack, Text, Image } from 'tamagui';
 import { useTranslation } from 'react-i18next';
 
 export default function Discover() {
@@ -10,11 +10,18 @@ export default function Discover() {
       alignItems="center"
       justifyContent="center"
       padding="$lg"
+      gap="$lg"
     >
-      <Text fontSize={22} fontWeight="600" color="$color">
+      <Image
+        source={require('../../../assets/illustrations/empty-man.png')}
+        width={220}
+        height={220}
+        resizeMode="contain"
+      />
+      <Text fontFamily="$heading" fontSize={24} color="$color">
         {t('discover')}
       </Text>
-      <Text fontSize={14} color="$colorSecondary">
+      <Text fontSize={13} color="$colorSecondary">
         Phase 2
       </Text>
     </YStack>

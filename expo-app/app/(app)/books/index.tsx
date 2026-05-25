@@ -1,4 +1,4 @@
-import { YStack, Text } from 'tamagui';
+import { YStack, Text, Image } from 'tamagui';
 import { useTranslation } from 'react-i18next';
 
 export default function Books() {
@@ -10,11 +10,18 @@ export default function Books() {
       alignItems="center"
       justifyContent="center"
       padding="$lg"
+      gap="$lg"
     >
-      <Text fontSize={22} fontWeight="600" color="$color">
+      <Image
+        source={require('../../../assets/illustrations/empty-man.png')}
+        width={240}
+        height={240}
+        resizeMode="contain"
+      />
+      <Text fontFamily="$heading" fontSize={24} color="$color" textAlign="center">
         {t('books')}
       </Text>
-      <Text fontSize={14} color="$colorSecondary">
+      <Text fontSize={13} color="$colorSecondary">
         Phase 3
       </Text>
     </YStack>

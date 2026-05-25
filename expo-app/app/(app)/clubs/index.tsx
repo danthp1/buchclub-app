@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useDidFinishSSR } from '@tamagui/use-did-finish-ssr';
-import { YStack, XStack, Text, ScrollView } from 'tamagui';
+import { YStack, XStack, Text, ScrollView, Image } from 'tamagui';
 import { SafeAreaView, TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { router } from 'expo-router';
@@ -66,6 +66,12 @@ export default function ClubsScreen() {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: '#F0EDE4' }}>
         <YStack flex={1} alignItems="center" justifyContent="center" paddingHorizontal="$lg" gap="$md">
+          <Image
+            source={require('../../../assets/illustrations/empty-man.png')}
+            width={220}
+            height={220}
+            resizeMode="contain"
+          />
           <Text fontFamily="$heading" fontSize={32} color="$color" textAlign="center">
             {isClient ? t('empty_heading') : 'No club yet.'}
           </Text>

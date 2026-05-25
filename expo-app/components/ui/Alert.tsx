@@ -25,7 +25,7 @@ export function Alert({ type, message }: AlertProps) {
       <Feather
         name={isSuccess ? 'check-circle' : 'alert-circle'}
         size={16}
-        color={isSuccess ? '#2E7D5A' : '#B33A3A'}
+        color={isSuccess ? '#2A7A3A' : '#D32F2F'}
       />
       <Text flex={1} fontSize={14} color="$color">
         {message}
