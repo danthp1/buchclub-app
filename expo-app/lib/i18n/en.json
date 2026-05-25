@@ -165,5 +165,32 @@
     "delete_confirm_body": "All your data will be permanently deleted. This action cannot be undone.",
     "delete_confirm_cta": "Delete account",
     "save_profile": "Save profile"
+  },
+  "books": {
+    "tab_reading": "Reading",
+    "tab_planned": "Planned",
+    "tab_done": "Done",
+    "add_book_fab": "Add book",
+    "search_placeholder": "Title, author or ISBN…",
+    "search_heading": "Find a book",
+    "search_no_results": "No books found for \"{{query}}\"",
+    "search_load_more": "Load more",
+    "status_planned": "Planned",
+    "status_reading": "Reading",
+    "status_completed": "Done",
+    "add_to_list_heading": "Add to my list",
+    "add_to_list_cta": "Add to list",
+    "already_in_list": "Already in your list",
+    "change_status_heading": "Change status",
+    "remove_from_list": "Remove from list",
+    "removed_toast": "Removed from list",
+    "cover_alt": "Cover of {{title}}",
+    "empty_list_heading": "Your list is empty.",
+    "empty_list_subtext": "Search for books and add them to your reading list.",
+    "empty_search_cta": "Search books",
+    "detail_published": "Published {{year}}",
+    "detail_read_more": "Read more",
+    "detail_read_less": "Show less",
+    "error_search_failed": "Search failed. Please try again."
   }
 }
