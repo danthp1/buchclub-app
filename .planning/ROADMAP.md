@@ -75,10 +75,19 @@ Cross-cutting constraints: useDidFinishSSR() guard on all screens; both DE + EN 
   2. User can tap a search result and add it to their reading list; the book's cover URL, title, author, and ISBN are stored in Supabase at that moment.
   3. User can view their personal reading list with cover images displayed and change a book's status between planned, reading, and completed.
   4. User can delete a book from their reading list and it disappears immediately from the UI.
-**Plans:** TBD
-**UI hint:** yes
+**Plans:** 4 plans in 3 waves
 
-### Phase 4: Pool, Voting & Realtime
+Wave 1:
+- [ ] 03-01-PLAN.md — Infrastructure: Edge Function proxy (google-books-search), useDebounce hook, books i18n namespace (DE + EN), register namespace in i18next init
+
+Wave 2 *(blocked on Wave 1 completion)* — 03-02 and 03-03 run in parallel:
+- [ ] 03-02-PLAN.md — Books tab: BookCard component (portrait cover + status badge), segmented control (Reading/Planned/Done), reading list query, long-press status Sheet, empty state
+- [ ] 03-03-PLAN.md — Search screen: useInfiniteQuery with Edge Function, 300ms debounce, paginated results, empty/error states
+
+Wave 3 *(blocked on Wave 2 completion)*:
+- [ ] 03-04-PLAN.md — Book Detail: dual-source screen (search→add, list→view), two-step upsert to books+personal_books, status change, destructive delete (personal_books only)
+
+Cross-cutting constraints: useDidFinishSSR() guard on all screens; both DE + EN translations required; all mutations through Supabase RLS; cover URLs normalized to https://; never DELETE from public.books table (shared append-only cache)
 **Goal:** Club members can propose books from their reading list into the club pool, upvote proposals atomically (no race conditions), and watch vote counts update live on every connected device.
 **Mode:** mvp
 **Depends on:** Phase 3
@@ -115,7 +124,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete   | 2026-05-24 |
 | 2. Clubs & Onboarding | 0/4 | Not started | - |
-| 3. Books & Reading List | 0/? | Not started | - |
+| 3. Books & Reading List | 0/4 | Planning complete | - |
 | 4. Pool, Voting & Realtime | 0/? | Not started | - |
 | 5. Meetings, Settings & i18n Completion | 0/? | Not started | - |
 
