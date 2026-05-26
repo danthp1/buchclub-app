@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation** - Expo scaffold, Supabase auth (native + web), Tamagui provider, i18n scaffold (DE + EN), full DB schema SQL (completed 2026-05-24)
 - [ ] **Phase 2: Clubs & Onboarding** - Club create/join/browse, member management, user profiles
-- [ ] **Phase 3: Books & Reading List** - Google Books search (Edge Function proxy), personal reading list with cover images
+- [x] **Phase 3: Books & Reading List** - Google Books search (Edge Function proxy), personal reading list with cover images (completed 2026-05-26)
 - [ ] **Phase 4: Pool, Voting & Realtime** - Propose books to club pool, atomic upvoting via RPC, live vote counts via Supabase Realtime
 - [ ] **Phase 5: Meetings, Settings & i18n Completion** - Meeting lifecycle (create, lock, history), language switcher, full translation audit
 
@@ -78,14 +78,14 @@ Cross-cutting constraints: useDidFinishSSR() guard on all screens; both DE + EN 
 **Plans:** 4 plans in 3 waves
 
 Wave 1:
-- [ ] 03-01-PLAN.md — Infrastructure: Edge Function proxy (google-books-search), useDebounce hook, books i18n namespace (DE + EN), register namespace in i18next init
+- [x] 03-01-PLAN.md — Infrastructure: Edge Function proxy (google-books-search), useDebounce hook, books i18n namespace (DE + EN), register namespace in i18next init
 
 Wave 2 *(blocked on Wave 1 completion)* — 03-02 and 03-03 run in parallel:
-- [ ] 03-02-PLAN.md — Books tab: BookCard component (portrait cover + status badge), segmented control (Reading/Planned/Done), reading list query, long-press status Sheet, empty state
-- [ ] 03-03-PLAN.md — Search screen: useInfiniteQuery with Edge Function, 300ms debounce, paginated results, empty/error states
+- [x] 03-02-PLAN.md — Books tab: BookCard component (portrait cover + status badge), segmented control (Reading/Planned/Done), reading list query, long-press status Sheet, empty state
+- [x] 03-03-PLAN.md — Search screen: useInfiniteQuery with Edge Function, 300ms debounce, paginated results, empty/error states
 
 Wave 3 *(blocked on Wave 2 completion)*:
-- [ ] 03-04-PLAN.md — Book Detail: dual-source screen (search→add, list→view), two-step upsert to books+personal_books, status change, destructive delete (personal_books only)
+- [x] 03-04-PLAN.md — Book Detail: dual-source screen (search→add, list→view), two-step upsert to books+personal_books, status change, destructive delete (personal_books only)
 
 Cross-cutting constraints: useDidFinishSSR() guard on all screens; both DE + EN translations required; all mutations through Supabase RLS; cover URLs normalized to https://; never DELETE from public.books table (shared append-only cache)
 **Goal:** Club members can propose books from their reading list into the club pool, upvote proposals atomically (no race conditions), and watch vote counts update live on every connected device.
@@ -123,8 +123,8 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete   | 2026-05-24 |
-| 2. Clubs & Onboarding | 0/4 | Not started | - |
-| 3. Books & Reading List | 0/4 | Planning complete | - |
+| 2. Clubs & Onboarding | 4/4 | Complete | 2026-05-26 |
+| 3. Books & Reading List | 4/4 | Complete | 2026-05-26 |
 | 4. Pool, Voting & Realtime | 0/? | Not started | - |
 | 5. Meetings, Settings & i18n Completion | 0/? | Not started | - |
 
@@ -136,4 +136,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 ---
 *Roadmap created: 2026-05-24*
-*Last updated: 2026-05-24 after Phase 2 planning complete (4 plans)*
+*Last updated: 2026-05-26 after Phase 3 execution complete (4/4 plans)*
