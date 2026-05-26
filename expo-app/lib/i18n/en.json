@@ -180,6 +180,7 @@
     "status_completed": "Done",
     "add_to_list_heading": "Add to my list",
     "add_to_list_cta": "Add to list",
+    "add_success": "Added!",
     "already_in_list": "Already in your list",
     "change_status_heading": "Change status",
     "remove_from_list": "Remove from list",

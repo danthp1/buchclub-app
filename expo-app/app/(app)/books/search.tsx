@@ -50,7 +50,7 @@ function normalizeCoverUrl(url?: string): string | null {
 
 // 1. Direct Google Books (primary — free, no key, 1000 req/day per IP)
 async function fetchFromGoogle(query: string, startIndex: number): Promise<GoogleBooksResponse> {
-  const url = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&maxResults=10&startIndex=${startIndex}&projection=lite`;
+  const url = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&maxResults=10&startIndex=${startIndex}`;
   const res = await fetch(url);
   if (!res.ok) throw new Error(`google:${res.status}`);
   return res.json();
@@ -239,7 +239,6 @@ export default function BookSearchScreen() {
                 <TouchableOpacity
                   key={item.id}
                   onPress={() => {
-                    const baseUrl = `/(app)/books/${item.id}`;
                     const queryParts: string[] = [
                       `source=search`,
                       `googleBooksId=${encodeURIComponent(item.id)}`,
@@ -252,7 +251,7 @@ export default function BookSearchScreen() {
                     if (item.volumeInfo.description) {
                       queryParts.push(`description=${encodeURIComponent(item.volumeInfo.description.substring(0, 500))}`);
                     }
-                    router.push(`${baseUrl}?${queryParts.join('&')}` as never);
+                    router.push(`/(app)/books/detail?${queryParts.join('&')}` as never);
                   }}
                   accessibilityRole="button"
                   activeOpacity={0.85}
