@@ -98,7 +98,19 @@ Cross-cutting constraints: useDidFinishSSR() guard on all screens; both DE + EN 
   3. Vote counts update in real time on all connected devices — a vote cast on one phone is visible on another phone within seconds, without a manual refresh.
   4. Vote mutations are routed exclusively through the `increment_book_vote` Postgres RPC; no direct INSERT or UPDATE to the votes table is possible from the client.
   5. Admin can remove a book from the club pool; the book disappears from all members' views immediately.
-**Plans:** TBD
+**Plans:** 4 plans in 3 waves
+
+Wave 1:
+- [ ] 04-01-PLAN.md — DB migration: `decrement_book_vote` RPC (SECURITY DEFINER, atomic vote removal, floor guard), pool i18n namespace (DE + EN), register pool namespace in i18next init
+
+Wave 2 *(blocked on Wave 1 completion)* — 04-02 and 04-03 run in parallel:
+- [ ] 04-02-PLAN.md — PoolBookCard component + Club Detail top tab bar (Members | Pool | Settings) + Pool tab leaderboard (vote query, optimistic upvote/unvote mutation, FAB, empty state, admin delete dialog)
+- [ ] 04-03-PLAN.md — Propose book flows: ProposePicker Sheet (FAB entry point, filter already-in-pool books, success toast) + Book Detail "Propose to club" button (second entry point, already-in-pool disabled state)
+
+Wave 3 *(blocked on Wave 2 completion)*:
+- [ ] 04-04-PLAN.md — Supabase Realtime subscription on pool_books UPDATE events → TanStack Query invalidation for live vote count updates; scoped to club ID, active only on Pool tab
+
+Cross-cutting constraints: useDidFinishSSR() guard on all screens; both DE + EN translations required (pool namespace); all vote mutations through RPC only — no direct INSERT/UPDATE to votes table; optimistic updates with rollback on RPC error
 **UI hint:** yes
 
 ### Phase 5: Meetings, Settings & i18n Completion
@@ -125,7 +137,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 1. Foundation | 3/3 | Complete   | 2026-05-24 |
 | 2. Clubs & Onboarding | 4/4 | Complete | 2026-05-26 |
 | 3. Books & Reading List | 4/4 | Complete | 2026-05-26 |
-| 4. Pool, Voting & Realtime | 0/? | Not started | - |
+| 4. Pool, Voting & Realtime | 0/4 | Planning complete | - |
 | 5. Meetings, Settings & i18n Completion | 0/? | Not started | - |
 
 ---
