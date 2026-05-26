@@ -153,7 +153,8 @@ export default function BookDetailScreen() {
     onError: () => setProposeToClubError(t('common:error_generic')),
   });
 
-  // Status update mutation — LIST-04 (source=list only)  const updateStatusMutation = useMutation({
+  // Status update mutation — LIST-04 (source=list only)
+  const updateStatusMutation = useMutation({
     mutationFn: async (status: BookStatus) => {
       const { error } = await supabase
         .from('personal_books')
