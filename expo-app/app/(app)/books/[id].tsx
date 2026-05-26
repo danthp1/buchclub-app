@@ -506,7 +506,7 @@ export default function BookDetailScreen() {
           )}
 
           {/* Propose to Club section — source=list only, when activeClubId is set */}
-          {isFromList && !!activeClubId && (
+          {isFromList && !!activeClubId && !!bookId && (
             <>
               {/* Divider */}
               <YStack height={1} backgroundColor="$borderColor" marginHorizontal="$lg" marginVertical="$sm" />

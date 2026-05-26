@@ -205,7 +205,7 @@ export default function ClubDetailScreen() {
       queryClient.setQueryData(['pool_books', id], (old: any) =>
         (old ?? []).map((pb: any) =>
           pb.id === poolBookId
-            ? { ...pb, vote_count: pb.vote_count + (isRemoving ? -1 : 1) }
+            ? { ...pb, vote_count: Math.max(0, pb.vote_count + (isRemoving ? -1 : 1)) }
             : pb
         )
       );
@@ -635,7 +635,7 @@ export default function ClubDetailScreen() {
       <Sheet
         modal
         open={proposeSheetOpen}
-        onOpenChange={setProposeSheetOpen}
+        onOpenChange={(open: boolean) => { setProposeSheetOpen(open); if (!open) setProposeError(null); }}
         snapPoints={[75]}
         dismissOnSnapToBottom
         // @ts-expect-error Tamagui 2.x animation prop requires config registration
