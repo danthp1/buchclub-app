@@ -8,6 +8,7 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '../../../lib/supabase';
 import { useAuthStore } from '../../../store/auth.store';
+import { useClubStore } from '../../../store/club.store';
 import { Alert } from '../../../components/ui/Alert';
 import type { BookStatus } from '../../../components/ui/BookCard';
 
@@ -45,11 +46,12 @@ type BookRow = {
 };
 
 export default function BookDetailScreen() {
-  const { t } = useTranslation(['books', 'common']);
+  const { t } = useTranslation(['books', 'common', 'pool']);
   const isClient = useDidFinishSSR();
   const queryClient = useQueryClient();
   const userId = useAuthStore((s) => s.session?.user.id);
   const params = useLocalSearchParams<SearchParams>();
+  const activeClubId = useClubStore((s) => s.activeClubId);
 
   const isFromSearch = params.source === 'search';
   const isFromList = params.source === 'list';
@@ -61,6 +63,8 @@ export default function BookDetailScreen() {
   const [actionError, setActionError] = useState<string | null>(null);
   const [alreadyInList, setAlreadyInList] = useState(false);
   const [addSuccess, setAddSuccess] = useState(false);
+  const [proposeToClubSuccess, setProposeToClubSuccess] = useState(false);
+  const [proposeToClubError, setProposeToClubError] = useState<string | null>(null);
 
   // Fetch personal book + book details (only when source=list)
   const { data: personalBook, isLoading } = useQuery({
@@ -106,10 +110,50 @@ export default function BookDetailScreen() {
     bookData.cover_url ??
     (bookData.isbn ? `https://covers.openlibrary.org/b/isbn/${bookData.isbn}-M.jpg` : undefined);
 
+  // Pool check: is this book already in the active club's pool?
+  const bookId = isFromList
+    ? (personalBook?.books as any)?.id
+    : null;
+
+  const { data: isInPool } = useQuery({
+    queryKey: ['pool_check', activeClubId, bookId],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('pool_books')
+        .select('id')
+        .eq('club_id', activeClubId!)
+        .eq('book_id', bookId!)
+        .maybeSingle();
+      if (error) throw error;
+      return !!data;
+    },
+    enabled: isFromList && !!activeClubId && !!bookId,
+  });
+
   // ─── Mutations ───────────────────────────────────────────────────────────────
 
-  // Status update mutation — LIST-04 (source=list only)
-  const updateStatusMutation = useMutation({
+  // Propose to club mutation (POOL-01, D-04 entry point 2)
+  const proposeToClubMutation = useMutation({
+    mutationFn: async () => {
+      const { error } = await supabase
+        .from('pool_books')
+        .insert({
+          club_id: activeClubId,
+          book_id: bookId,
+          proposed_by: userId,
+        });
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      setProposeToClubSuccess(true);
+      setTimeout(() => setProposeToClubSuccess(false), 3000);
+      queryClient.invalidateQueries({ queryKey: ['pool_books', activeClubId] });
+      queryClient.invalidateQueries({ queryKey: ['pool_check', activeClubId, bookId] });
+    },
+    onError: () => setProposeToClubError(t('common:error_generic')),
+  });
+
+  // Status update mutation — LIST-04 (source=list only)  const updateStatusMutation = useMutation({
     mutationFn: async (status: BookStatus) => {
       const { error } = await supabase
         .from('personal_books')
@@ -459,6 +503,55 @@ export default function BookDetailScreen() {
                 </Text>
               </TouchableOpacity>
             </YStack>
+          )}
+
+          {/* Propose to Club section — source=list only, when activeClubId is set */}
+          {isFromList && !!activeClubId && (
+            <>
+              {/* Divider */}
+              <YStack height={1} backgroundColor="$borderColor" marginHorizontal="$lg" marginVertical="$sm" />
+
+              {/* Propose to Club section */}
+              <YStack paddingHorizontal="$lg" gap="$sm" paddingBottom="$xl">
+                <Text fontSize={13} fontWeight="600" color="$colorSecondary">
+                  {isClient ? t('pool:propose_section_heading') : 'Club Pool'}
+                </Text>
+
+                {proposeToClubError && (
+                  <Alert type="error" message={proposeToClubError} />
+                )}
+
+                {proposeToClubSuccess && (
+                  <Alert
+                    type="success"
+                    message={isClient ? t('pool:propose_success_toast') : 'Book proposed!'}
+                  />
+                )}
+
+                <TouchableOpacity
+                  onPress={() => !isInPool && proposeToClubMutation.mutate()}
+                  disabled={!!isInPool || proposeToClubMutation.isPending}
+                  accessibilityRole="button"
+                  style={{
+                    height: 52,
+                    borderRadius: 12,
+                    borderWidth: 1.5,
+                    borderColor: '#0D0D0D',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    opacity: isInPool || proposeToClubMutation.isPending ? 0.5 : 1,
+                  }}
+                >
+                  <Text fontSize={15} fontWeight="600" color="$color">
+                    {proposeToClubMutation.isPending
+                      ? (isClient ? t('common:loading') : 'Proposing…')
+                      : isInPool
+                        ? (isClient ? t('pool:already_in_pool') : 'Already in pool')
+                        : (isClient ? t('pool:propose_to_club_cta') : 'Propose to club')}
+                  </Text>
+                </TouchableOpacity>
+              </YStack>
+            </>
           )}
         </YStack>
       </ScrollView>
