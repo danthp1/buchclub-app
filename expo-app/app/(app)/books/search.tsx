@@ -48,15 +48,61 @@ function normalizeCoverUrl(url?: string): string | null {
   return url.replace('http://', 'https://');
 }
 
-async function fetchBooks(query: string, startIndex: number): Promise<GoogleBooksResponse> {
+// 1. Direct Google Books (primary — free, no key, 1000 req/day per IP)
+async function fetchFromGoogle(query: string, startIndex: number): Promise<GoogleBooksResponse> {
+  const url = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&maxResults=10&startIndex=${startIndex}&projection=lite`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`google:${res.status}`);
+  return res.json();
+}
+
+// 2. Edge Function proxy (fallback — avoids CORS issues if they arise)
+async function fetchFromEdgeFunction(query: string, startIndex: number): Promise<GoogleBooksResponse> {
   const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL!;
   const supabaseKey = process.env.EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY!;
   const url = `${supabaseUrl}/functions/v1/google-books-search?q=${encodeURIComponent(query)}&maxResults=10&startIndex=${startIndex}`;
-  const res = await fetch(url, {
-    headers: { Authorization: `Bearer ${supabaseKey}` },
-  });
-  if (!res.ok) throw new Error(`Search request failed: ${res.status}`);
+  const res = await fetch(url, { headers: { Authorization: `Bearer ${supabaseKey}` } });
+  if (!res.ok) throw new Error(`edge:${res.status}`);
   return res.json();
+}
+
+// 3. Open Library (last resort — different shape, normalised to GoogleBooksResponse)
+async function fetchFromOpenLibrary(query: string, startIndex: number): Promise<GoogleBooksResponse> {
+  const url = `https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&limit=10&offset=${startIndex}&fields=key,title,author_name,first_publish_year,isbn,cover_i`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`openlibrary:${res.status}`);
+  const data = await res.json();
+  const items: GoogleBookItem[] = (data.docs ?? []).map((doc: any) => {
+    const isbn = doc.isbn?.[0] ?? null;
+    const coverId = doc.cover_i;
+    return {
+      id: doc.key,
+      volumeInfo: {
+        title: doc.title ?? '',
+        authors: doc.author_name ?? [],
+        publishedDate: doc.first_publish_year?.toString(),
+        imageLinks: coverId
+          ? { thumbnail: `https://covers.openlibrary.org/b/id/${coverId}-M.jpg` }
+          : undefined,
+        industryIdentifiers: isbn
+          ? [{ type: 'ISBN_13', identifier: isbn }]
+          : undefined,
+      },
+    };
+  });
+  return { kind: 'books#volumes', totalItems: data.numFound ?? items.length, items };
+}
+
+async function fetchBooks(query: string, startIndex: number): Promise<GoogleBooksResponse> {
+  try {
+    return await fetchFromGoogle(query, startIndex);
+  } catch {
+    try {
+      return await fetchFromEdgeFunction(query, startIndex);
+    } catch {
+      return await fetchFromOpenLibrary(query, startIndex);
+    }
+  }
 }
 
 export default function BookSearchScreen() {
