@@ -28,6 +28,7 @@ void i18n
         clubs: en.clubs,
         profile: en.profile,
         books: en.books,
+        pool: en.pool,
       },
       de: {
         common: de.common,
@@ -37,9 +38,10 @@ void i18n
         clubs: de.clubs,
         profile: de.profile,
         books: de.books,
+        pool: de.pool,
       },
     },
-    ns: ['common', 'auth', 'nav', 'onboarding', 'clubs', 'profile', 'books'],
+    ns: ['common', 'auth', 'nav', 'onboarding', 'clubs', 'profile', 'books', 'pool'],
     defaultNS: 'common',
     interpolation: {
       escapeValue: false, // React handles escaping

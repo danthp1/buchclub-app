@@ -192,5 +192,27 @@
     "detail_read_more": "Read more",
     "detail_read_less": "Show less",
     "error_search_failed": "Search failed. Please try again."
+  },
+  "pool": {
+    "tab_members": "Members",
+    "tab_pool": "Pool",
+    "tab_settings": "Settings",
+    "propose_fab_label": "Propose a book",
+    "propose_sheet_heading": "Propose a book",
+    "propose_section_heading": "Club Pool",
+    "propose_to_club_cta": "Propose to club",
+    "already_in_pool": "Already in pool",
+    "propose_empty_reading_list": "Your reading list is empty. Add books first.",
+    "propose_add_books_cta": "Find books",
+    "propose_success_toast": "Book proposed!",
+    "upvote": "Upvote",
+    "remove_vote": "Remove vote",
+    "vote_error": "Vote failed. Please try again.",
+    "remove_book_heading": "Remove book?",
+    "remove_book_body": "Remove \"{{title}}\" from the club pool? This cannot be undone.",
+    "remove_book_cta": "Remove",
+    "admin_remove_hint": "Long-press to remove from pool",
+    "empty_heading": "No books yet.",
+    "empty_subtext": "Propose the first book to the club and start the discussion."
   }
 }

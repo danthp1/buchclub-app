@@ -192,5 +192,27 @@
     "detail_read_more": "Mehr lesen",
     "detail_read_less": "Weniger anzeigen",
     "error_search_failed": "Suche fehlgeschlagen. Bitte erneut versuchen."
+  },
+  "pool": {
+    "tab_members": "Mitglieder",
+    "tab_pool": "Pool",
+    "tab_settings": "Einstellungen",
+    "propose_fab_label": "Buch vorschlagen",
+    "propose_sheet_heading": "Buch vorschlagen",
+    "propose_section_heading": "Club-Pool",
+    "propose_to_club_cta": "Zum Club vorschlagen",
+    "already_in_pool": "Bereits im Pool",
+    "propose_empty_reading_list": "Deine Leseliste ist leer. Füge zuerst Bücher hinzu.",
+    "propose_add_books_cta": "Bücher suchen",
+    "propose_success_toast": "Buch vorgeschlagen!",
+    "upvote": "Abstimmen",
+    "remove_vote": "Stimme entfernen",
+    "vote_error": "Abstimmung fehlgeschlagen. Bitte erneut versuchen.",
+    "remove_book_heading": "Buch entfernen?",
+    "remove_book_body": "\"{{title}}\" aus dem Club-Pool entfernen? Das kann nicht rückgängig gemacht werden.",
+    "remove_book_cta": "Entfernen",
+    "admin_remove_hint": "Lang drücken zum Entfernen aus dem Pool",
+    "empty_heading": "Noch keine Bücher hier.",
+    "empty_subtext": "Schlage das erste Buch für den Club vor und starte die Diskussion."
   }
 }
